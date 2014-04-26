@@ -1,0 +1,18 @@
+{
+  "name": "ece.ntust.co",
+  "version": "0.0.0",
+  "description": "台灣科技大學電資學士班系網",
+  "authors": [
+    "Neson <neson@dex.tw>"
+  ],
+  "private": true,
+  "dependencies": {
+    "normalize.css": "~3.0.1",
+    "foundation": "~5.2.2",
+    "susy": "~1.0.9",
+    "html5shiv": "~3.7.1",
+    "jquery.lazyload": "~1.9.3",
+    "animate.css": "~3.1.1",
+    "Han": "~2.3.0"
+  }
+}

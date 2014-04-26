@@ -1,0 +1,15 @@
+= wrap_layout :layout do
+  .container
+    %header
+      .logo
+        %hgroup
+          %h1= current_page.data.title || data.config.siteTitle
+          %h2= current_page.data.sub_title || data.config.siteSubTitle
+      .menu
+        %nav.main-menu
+          = partial "partials/nav"
+    .hero
+    %section.content
+      %h1= current_page.data.title || data.config.siteTitle
+      = yield
+    %footer

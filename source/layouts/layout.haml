@@ -1,0 +1,38 @@
+!!!
+%html{lang: "zh-tw", class: "han-la"}
+  %head
+    %meta{charset: "utf-8"}
+
+    = partial "partials/ece_acsii"
+
+    %meta{name: "viewport", content: "width=device-width; initial-scale=1.0; user-scalable=yes"}
+    -# Always force latest IE rendering engine or request Chrome Frame
+    %meta{content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+
+    -# Use title if it's in the page YAML frontmatter
+    %title= current_page.data.title ? current_page.data.title + data.config.siteTitleSuffix : data.config.siteTitle
+
+    %meta{name: "description", content: current_page.data.description || data.config.siteDescription}
+    %meta{name: "keywords", content: current_page.data.keywords || data.config.siteKeywords}
+    %meta{name: "og:title", content: current_page.data.title || data.config.siteTitle}
+    %meta{name: "og:site_name", content: data.config.siteName}
+    %meta{name: "og:image", content: current_page.data.og_image || data.config.siteOgImage}
+
+    = stylesheet_link_tag "all"
+
+    = javascript_include_tag "modernizr"
+
+  %body{class: page_classes}
+    = yield
+
+    = javascript_include_tag "all"
+    = auto_javascript_include_tag
+
+    -# Google Analysis
+    :javascript
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','#{data.config.GAid}');ga('send','pageview');

@@ -1,0 +1,83 @@
+@import "Compass/css3";
+@import "Compass/utilities";
+
+// -------------------------------------
+//   Foundation & Susy
+// -------------------------------------
+
+@import "foundation";
+@import "susy";
+
+$debug: true;
+
+// 基本設定
+$total-columns  : 5; // 預設 5 欄
+$column-width   : 5em;
+$gutter-width   : 1.5em;
+$grid-padding   : 1em;
+
+// add media
+$ipad           : 641px 8;  // min-width 641px 寬度超過 641px 後的欄位數量
+$desktop        : 941px 12; // min-width 941px 寬度超過 941px 後的欄位數量
+
+// 設定大容器
+body {
+  background: #d9dfd1;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  @include container(12);
+  @include pie-clearfix;
+}
+
+// 做版面
+// 一般版（mobile first）
+.header {
+  @include padding-leader(1);
+}
+.columns {
+  @include leader(1);
+}
+
+// iPad 版本
+@include at-breakpoint($ipad) {
+  .column {
+    @include span-columns(4);
+    @include nth-omega(2n);
+  }
+}
+
+// Desktop 版本
+@include at-breakpoint($desktop) {
+  .header {
+    @include span-columns(3);
+    [class^=font-scale-] {
+      @include ellipsis;
+    }
+  }
+  .columns {
+    @include span-columns(9 omega);
+  }
+  .column {
+    @include remove-nth-omega(2n, child ,9);
+    @include span-columns(3, 9);
+    @include nth-omega(3n);
+  }
+}
+
+body:hover {
+	$grid-background-column-color: rgba(#f15a14,.2);
+	$grid-background-baseline-color: rgba(#009a8e,.3);
+	@include baseline-grid-background;
+
+	.container {
+	  @include susy-grid-background;
+	  @include at-breakpoint($ipad) {
+	    @include susy-grid-background;
+	  }
+	  @include at-breakpoint($desktop) {
+	    @include susy-grid-background;
+	  }
+	}
+}

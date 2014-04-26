@@ -1,0 +1,60 @@
+// *************************************
+//
+//   Settings
+//   -> Fonts, Variables
+//
+// *************************************
+
+// -------------------------------------
+//   @font-face
+// -------------------------------------
+
+// ...
+
+// -------------------------------------
+//   Variables
+// -------------------------------------
+
+// ----- Base Colors ----- //
+
+$warm-black: #594f44;
+$warm-white: #f9f3ed;
+$orange: #d74c11;
+$red: #bf280d;
+$blue: #357abb;
+$dark-blue: #3b4354;
+
+$base-background: lighten($warm-white, 4%);
+$base-color: darken($warm-black, 4%);
+$base-link-color: $blue;
+
+$nav-active-color: $red;
+
+$content-background: $warm-white;
+
+$grid-background-column-color: rgba(darken($orange, 8%), .2);
+$grid-background-baseline-color: rgba($warm-black, .3);
+
+// ----- Base Borders & Box Shadows ----- //
+
+$base-border: 1px solid $base-color;
+$base-borderRadius: 3px;
+$base-boxShadow: 0 1px 2px rgba($base-color, 0.25);
+
+// ----- Base Content ----- //
+
+$base-fontFamily: sans-serif;
+$base-fontSize: 16px;
+$base-lineHeight: 1.5;
+
+// ----- Base Layout ----- //
+
+$base-whitespace: 20px;
+
+// ----- Content ----- //
+
+$c-header-fontFamily: sans-serif;
+
+// ----- Layout ----- //
+
+$l-maxWidth: 980px;
