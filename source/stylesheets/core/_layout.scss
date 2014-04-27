@@ -10,7 +10,7 @@
 // -------------------------------------
 
 $total-columns: 5;
-$tablet-columns: 8;
+$tablet-columns: 10;
 $desktop-columns: 12;
 $large-desktop-columns: 12;
 $column-width: 5em;
@@ -33,6 +33,13 @@ body {
 	height: auto;
 	margin: 0;
 	padding: 0;
+	min-height: 100%;
+	overflow-x: hidden;
+
+	> div {
+		width: 100%;
+		overflow-x: hidden;
+	}
 
 	// @if $debug == true {
 	// 	&:hover {
@@ -52,11 +59,32 @@ body {
 
 		.main-menu {
 			@include span-columns(2);
-			@include nth-omega(2n);
 		}
 
 		.content {
-			@include span-columns(6 omega);
+			@include span-columns(8 omega);
+		}
+
+		footer {
+			@include span-columns(10);
+			position: relative;
+			z-index: 10;
+
+			> * {
+				position: relative;
+				z-index: 10;
+			}
+
+			&::after {
+				content: " ";
+				position: absolute;
+				z-index: -1;
+				width: 99999px;
+				height: 100%;
+				background-color: #19f;
+				top: 0;
+				left: -9999px;
+			}
 		}
 	}
 
@@ -73,30 +101,127 @@ body {
 
 			.pull-left.box {
 				position: relative;
+				z-index: 11;
 				@include span-columns(5, 8);
 				margin-left: - space(1, 8);
 			}
 
 			.pull-right.box {
 				position: relative;
+				z-index: 11;
 				@include span-columns(5, 8);
 				@include omega;
+				margin-left: gutter(8);
 				margin-right: - space(1, 8);
+				padding-right: 48px;
 			}
 
 			.pull-left.text {
 				position: relative;
+				z-index: 11;
 				@include span-columns(4, 8);
 				margin-left: - space(1, 8);
 			}
 
 			.pull-right.text {
 				position: relative;
+				z-index: 11;
 				@include span-columns(4, 8);
 				@include omega;
+				margin-left: gutter(8);
 				margin-right: - space(1, 8);
+				padding-right: 48px;
 			}
 		}
+	}
+}
+
+// ----- Responsive - Tablet ----- //
+
+@include respond-to($tablet-min-width) {
+
+	.main-menu {
+		position: relative;
+		z-index: 10;
+	}
+
+	.content > * {
+		position: relative;
+		z-index: 10;
+	}
+
+	.content {
+		position: relative;
+		overflow: visible;
+		background-color: $content-bgc;
+		margin-top: $base-line-height/2;
+		padding-top: $base-line-height/2;
+		z-index: 5;
+
+		&::before {
+			content: " ";
+			position: absolute;
+			background-color: $content-bgc;
+			height: 100%;
+			width: 106.2%;
+			top: 0;
+			right: - $grid-padding;
+			z-index: 0;
+		}
+	}
+}
+
+// ----- Responsive - Desktop ----- //
+
+@include respond-to($desktop-min-width) {
+
+	.container {
+		max-width: 1200px;
+	}
+
+	.content > * {
+		position: relative;
+		z-index: 10;
+	}
+
+	.content {
+		position: relative;
+		overflow: visible;
+		background-color: $content-bgc;
+		margin-top: 0;
+		padding-top: $base-line-height;
+		z-index: 5;
+
+		&::before {
+			content: " ";
+			position: absolute;
+			background-color: $content-bgc;
+			height: 100%;
+			width: 99999999px;
+			top: 0;
+			right: 0;
+			z-index: 0;
+		}
+	}
+}
+
+// -------------------------------------
+//   Hero
+// -------------------------------------
+
+.hero {
+	display: none;
+
+	@include respond-to($tablet-min-width) {
+		display: block;
+		position: fixed;
+		z-index: -100;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: #333;
 	}
 }
 

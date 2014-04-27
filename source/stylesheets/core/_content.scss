@@ -9,32 +9,34 @@
 //   Vertical Rhythm
 // -------------------------------------
 
-$base-font-size: 20px;
-$base-line-height: $base-font-size * 3/2;
-
 @include establish-baseline;
 
 // -------------------------------------
 //   Headings & Paragraph & ...
 // -------------------------------------
 
-#{headings()}, p {
-	@include transition(opacity .3s);
-}
+@include selection($warm-white, $warm-black);
 
 body {
-	@include selection($warm-white, $warm-black);
+	font-family: "xingothic-tc-w4", "蘋果儷中黑", "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 p, blockquote, code, dl, ol, ul {
 	@include rhythm-to(0, 0, 0, 1, 17px);
 }
 
-blockquote {
-	p {
-		font-size: 1rem;
-	}
-	margin-bottom: 0;
+#{headings()}, p {
+	@include transition(opacity .3s);
+}
+
+#{headings(1,2)} {
+	overflow: hidden;
+	font-family: "xingothic-tc-w8";
+}
+
+#{headings(3,6)} {
+	overflow: hidden;
+	font-family: "xingothic-tc-w6";
 }
 
 h1, %c-h1 {
@@ -65,32 +67,76 @@ h6, %c-h6 {
 	@include rhythm-to(0, 0.5, 0.5, 0, 20px);
 }
 
-.pull-left.text, .pull-right.text {
-	@include rhythm-to(0, 0.5, 0.5, 0, $base-font-size*2);
+@media only screen and (max-width: $phone-min-width) {
+
+	p, blockquote, code, dl, ol, ul {
+		@include rhythm-to(0, 0, 0, 1, 15px);
+	}
+
+	h1, %c-h1 {
+		@include rhythm-to(0, 0, 0, 1, 36px);
+	}
+
+	h2, %c-h2 {
+		@include rhythm-to(1, 0.5, 0.5, 0, 30px);
+
+		&:first-child {
+			@include margin-leader(0);
+		}
+	}
+
+	h3, %c-h3 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 24px);
+	}
+
+	h4, %c-h4 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 20px);
+	}
+
+	h5, %c-h5 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 16px);
+	}
+
+	h6, %c-h6 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 16px);
+	}
 }
 
-// ----- Font ----- //
+blockquote {
+	margin-bottom: 0;
+	border-left: 5px solid $warm-black;
+	font-family: "datf3";
 
-body {
-	font-family: "xingothic-tc-w4", "蘋果儷中黑", "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	p {
+		font-size: 1rem;
+	}
 }
 
 strong {
 	font-family: "xingothic-tc-w6";
 }
 
-#{headings(1,2)} {
-	overflow: hidden;
-	font-family: "xingothic-tc-w8";
+p.img {
+	text-align: center;
+	color: lighten($base-color, 20%);
+	line-height: 36px;
 }
 
-#{headings(3,6)} {
-	overflow: hidden;
-	font-family: "xingothic-tc-w6";
+.pull-left.text, .pull-right.text {
+	@include rhythm-to(0, 0.5, 0.5, 0, $base-font-size*2);
+	color: $red;
+	@include selection($warm-white, $red);
+	padding-bottom: 0;
+}
+
+.pull-left {
+	@include respond-to($desktop-min-width) {
+		text-align: right;
+	}
 }
 
 .poem-like, %poem-like {
-	font-family: "datm5";
+	font-family: "datf3";
 }
 
 // -------------------------------------

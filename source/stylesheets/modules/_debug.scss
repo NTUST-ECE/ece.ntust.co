@@ -36,16 +36,41 @@
 	}
 
 	head:hover ~ body {
-		@include debug-vertical-alignment;
+
+		&::after {
+			content: " ";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			z-index: 100;
+			top: 0;
+			left: 0;
+			@include debug-vertical-alignment;
+
+		}
 
 		.container {
-			@include susy-grid-background;
-			@include at-breakpoint($tablet) {
+			position: relative;
+
+			&::before {
 				@include susy-grid-background;
-			}
-			@include at-breakpoint($desktop) {
-				@include susy-grid-background;
+				@include at-breakpoint($tablet) {
+					@include susy-grid-background;
+				}
+				@include at-breakpoint($desktop) {
+					@include susy-grid-background;
+				}
+				content: " ";
+				position: absolute;
+				width: 96%;
+				width: calc(100% - #{$grid-padding * 2});
+				height: 100%;
+				z-index: 100;
+				top: 0;
+				left: $grid-padding;
 			}
 		}
 	}
+
+	head:hover ~ body.chrome {}
 }

@@ -68,11 +68,11 @@ end
 ###
 
 # Automatic image dimensions on image_tag helper
-# activate :automatic_image_sizes
+activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
 configure :development do
-  activate :livereload, :port => 35730, :apply_css_live => true
+  activate :livereload, :port => 35732, :apply_css_live => true
 end
 
 # Methods defined in the helpers block are available in templates

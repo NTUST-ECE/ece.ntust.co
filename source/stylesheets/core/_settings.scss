@@ -24,9 +24,11 @@ $red: #bf280d;
 $blue: #357abb;
 $dark-blue: #3b4354;
 
-$base-background: lighten($warm-white, 4%);
+$base-bgc: lighten($warm-white, 4%);
+$base-background: $base-bgc;
 $base-color: darken($warm-black, 4%);
 $base-link-color: $blue;
+$content-bgc: $base-background;
 
 $nav-active-color: $red;
 
@@ -54,6 +56,8 @@ $base-whitespace: 20px;
 // ----- Content ----- //
 
 $c-header-fontFamily: sans-serif;
+$base-font-size: 20px;
+$base-line-height: $base-font-size * 3/2;
 
 // ----- Layout ----- //
 

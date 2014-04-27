@@ -5,10 +5,13 @@
         %hgroup
           %h1= current_page.data.title || data.config.siteTitle
           %h2= current_page.data.sub_title || data.config.siteSubTitle
-    .hero
     %nav.main-menu
-      = partial "partials/nav"
+      %h1 Main Navigation
+      %ul
+        = partial "partials/nav"
     %section.content.vertical-rhythm
       -# %h1= current_page.data.title || data.config.siteTitle
       = yield
     %footer
+      = partial "partials/footer"
+  .hero

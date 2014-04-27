@@ -1,3 +1,6 @@
+---
+layout: false
+---
 !!!
 %html{lang: "zh-tw", class: "han-la"}
   %head
@@ -25,7 +28,21 @@
 
   %body{class: page_classes}
     .page
-      = yield
+      .container
+        %header
+          .logo
+            %hgroup
+              %h1= current_page.data.title || data.config.siteTitle
+              %h2= current_page.data.sub_title || data.config.siteSubTitle
+        %nav.main-menu
+          %h1 Main Navigation
+          %ul
+            = partial "partials/nav"
+        %section.content.vertical-rhythm
+          -# %h1= current_page.data.title || data.config.siteTitle
+          a s
+        %footer
+          = partial "partials/footer"
 
     = javascript_include_tag "all"
     = auto_javascript_include_tag
