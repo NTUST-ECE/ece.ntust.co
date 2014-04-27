@@ -6,37 +6,91 @@
 // *************************************
 
 // -------------------------------------
-//   Headings
+//   Vertical Rhythm
 // -------------------------------------
 
-h1, h2, h3,
-h4, h5, h6 {
-	font-family: $c-header-fontFamily;
-	font-weight: bold;
+$base-font-size: 20px;
+$base-line-height: $base-font-size * 3/2;
+
+@include establish-baseline;
+
+// -------------------------------------
+//   Headings & Paragraph & ...
+// -------------------------------------
+
+#{headings()}, p {
+	@include transition(opacity .3s);
 }
 
-h1, .c-h1, %c-h1 {
-	font-size: rem(40px);
+body {
+	@include selection($warm-white, $warm-black);
 }
 
-h2, .c-h2, %c-h2 {
-	font-size: rem(35px);
+p, blockquote, code, dl, ol, ul {
+	@include rhythm-to(0, 0, 0, 1, 17px);
 }
 
-h3, .c-h3, %c-h3 {
-	font-size: rem(30px);
+blockquote {
+	p {
+		font-size: 1rem;
+	}
+	margin-bottom: 0;
 }
 
-h4, .c-h4, %c-h4 {
-	font-size: rem(25px);
+h1, %c-h1 {
+	@include rhythm-to(0, 0, 0, 1, 48px);
 }
 
-h5, .c-h5, %c-h5 {
-	font-size: rem(20px);
+h2, %c-h2 {
+	@include rhythm-to(1, 0.5, 0.5, 0, 36px);
+
+	&:first-child {
+		@include margin-leader(0);
+	}
 }
 
-h6, .c-h6, %c-h6 {
-	font-size: rem(16px);
+h3, %c-h3 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 30px);
+}
+
+h4, %c-h4 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 24px);
+}
+
+h5, %c-h5 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 20px);
+}
+
+h6, %c-h6 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 20px);
+}
+
+.pull-left.text, .pull-right.text {
+	@include rhythm-to(0, 0.5, 0.5, 0, $base-font-size*2);
+}
+
+// ----- Font ----- //
+
+body {
+	font-family: "xingothic-tc-w4", "蘋果儷中黑", "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+strong {
+	font-family: "xingothic-tc-w6";
+}
+
+#{headings(1,2)} {
+	overflow: hidden;
+	font-family: "xingothic-tc-w8";
+}
+
+#{headings(3,6)} {
+	overflow: hidden;
+	font-family: "xingothic-tc-w6";
+}
+
+.poem-like, %poem-like {
+	font-family: "datm5";
 }
 
 // -------------------------------------

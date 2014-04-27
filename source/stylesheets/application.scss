@@ -16,8 +16,9 @@ $debug: true;
 //   Compass
 // -------------------------------------
 
-@import "Compass/css3";
-@import "Compass/utilities";
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/layout";
 
 // -------------------------------------
 //   Foundation & Susy
@@ -59,11 +60,18 @@ $debug: true;
 // -------------------------------------
 
 @import "modules/*";
+@import "modules/nav";
+@import "modules/debug";
 
 // -------------------------------------
 //   Inbox
 // -------------------------------------
 
-h1 {
-	@extend %debug;
-}
+// #{headers(1,6)}, li {
+// 	@extend %debug;
+// }
+
+
+// body .container * {
+// 	@include ellipsis;
+// }

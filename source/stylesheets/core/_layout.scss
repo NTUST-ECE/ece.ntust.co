@@ -6,16 +6,21 @@
 // *************************************
 
 // -------------------------------------
-//   Susy Gird & Vertical Rhythm
+//   Susy Gird
 // -------------------------------------
 
-$total-columns  : 5;
-$column-width   : 5em;
-$gutter-width   : 1.5em;
-$grid-padding   : 1em;
+$total-columns: 5;
+$tablet-columns: 8;
+$desktop-columns: 12;
+$large-desktop-columns: 12;
+$column-width: 5em;
+$gutter-width: 1.5em;
+$grid-padding: 1em;
 
-$tablet: 641px 8;  // if (min-width 641px) tablet -> use 8 columns
-$desktop: 941px 12; // if (min-width 941px) desktop -> use 12 columns
+$tablet: $tablet-min-width $tablet-columns;
+// => if (min-width $tablet-min-width) tablet -> use $tablet-columns
+$desktop: $desktop-min-width $desktop-columns;
+// => if (min-width $desktop-min-width) desktop -> use $desktop-columns
 
 // -------------------------------------
 //   Composition
@@ -59,81 +64,41 @@ body {
 
 		.main-menu {
 			@include span-columns(2);
-			@include nth-omega(2n);
 		}
 
 		.content {
 			@include span-columns(9 omega);
+			@include suffix(1);
 			@include post(1);
-		}
-	}
-}
 
-// ----- Container ----- //
-
-.content {
-
-	@include at-breakpoint($desktop) {
-
-		.box.pull-left {
-			@include span-columns(3);
-			@include pull(1);
-		}
-		.box.pull-right {
-			@include span-columns(3);
-			@include pull(-1);
-		}
-	}
-}
-
-// ----- Grid debug ----- //
-
-@if $debug == true {
-
-	head {
-		display: block;
-		position: fixed;
-		right: 10px;
-		bottom: 10px;
-		z-index: 9999;
-		color: #333;
-		background-color: rgba(255, 255, 255, 0.25);
-	}
-
-	head::before {
-		content: "‖‖";
-		display: block;
-		padding: 8px 6px;
-		padding-right: 16px;
-		font-family: sans-serif;
-		font-size: 16px;
-		font-weight: bold;
-		letter-spacing: -10px;
-	}
-
-	head:hover::before {
-		@if variable-exists(red) {
-			color: $red;
-		} @else {
-			color: #a00;
-		}
-	}
-
-	head:hover ~ body {
-		@include baseline-grid-background;
-
-		.container {
-			@include susy-grid-background;
-			@include at-breakpoint($tablet) {
-				@include susy-grid-background;
+			.pull-left.box {
+				position: relative;
+				@include span-columns(5, 8);
+				margin-left: - space(1, 8);
 			}
-			@include at-breakpoint($desktop) {
-				@include susy-grid-background;
+
+			.pull-right.box {
+				position: relative;
+				@include span-columns(5, 8);
+				@include omega;
+				margin-right: - space(1, 8);
+			}
+
+			.pull-left.text {
+				position: relative;
+				@include span-columns(4, 8);
+				margin-left: - space(1, 8);
+			}
+
+			.pull-right.text {
+				position: relative;
+				@include span-columns(4, 8);
+				@include omega;
+				margin-right: - space(1, 8);
 			}
 		}
 	}
 }
-
 
 // -------------------------------------
 //   Bucket

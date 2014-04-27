@@ -1,0 +1,51 @@
+
+// -------------------------------------
+//   Grid debug for Susy & Compass
+// -------------------------------------
+
+@if $debug == true {
+
+	head {
+		display: block;
+		position: fixed;
+		line-height: 24px;
+		right: 10px;
+		bottom: 10px;
+		z-index: 9999;
+		color: #333;
+		background-color: rgba(255, 255, 255, 0.25);
+	}
+
+	head::before {
+		content: "‖‖";
+		display: block;
+		padding: 8px 6px;
+		padding-right: 16px;
+		font-family: sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		letter-spacing: -10px;
+	}
+
+	head:hover::before {
+		@if variable-exists(red) {
+			color: $red;
+		} @else {
+			color: #a00;
+		}
+	}
+
+	head:hover ~ body {
+		@include debug-vertical-alignment;
+
+		.container {
+			@include susy-grid-background;
+			@include at-breakpoint($tablet) {
+				@include susy-grid-background;
+			}
+			@include at-breakpoint($desktop) {
+				@include susy-grid-background;
+			}
+		}
+	}
+}

@@ -12,7 +12,7 @@
 // ----- Debug ----- //
 
 %debug {
-	background-color: pink !important;
+	background-color: rgba(pink, 0.8) !important;
 }
 
 // ----- Ellipsis ----- //
@@ -66,6 +66,50 @@
 	@return #{$size / $base-fontSize}rem;
 }
 
+// ----- Vertical Rhythm ----- //
+
+@mixin move-to-baseline($font-size, $line: lines-for-font-size($font-size), $top: false) {
+	position: relative;
+	$move: ( $base-line-height * $line - $font-size * ( 0.7 - $font-size / 1000px ) ) / 2 / $font-size * 1em;
+	@if $top == top {
+		top: - $move;
+	} @else {
+		top: $move;
+	}
+}
+
+@mixin baseline-font-size($font-size, $line: lines-for-font-size($font-size), $top: false) {
+	@include adjust-font-size-to($font-size, $line);
+	@include move-to-baseline($font-size, $line, $top);
+}
+
+@for $i from 1px through 48px {
+	.font-size-#{$i}, %font-size-#{$i} {
+		@include adjust-font-size-to($i);
+		@include trailer(1, $i);
+		@include move-to-baseline($i);
+
+		@if $debug == true {
+			overflow: visible !important;
+
+			&:before {
+				content: "#{$i}";
+				display: block;
+				position: absolute;
+				left: -32px;
+				color: #ddd;
+				background-color: #000;
+				font-size: 10px;
+				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+				line-height: 14px;
+				text-align: center;
+
+				width: 28px;
+			}
+		}
+	}
+}
+
 // -------------------------------------
 //   Mixins
 // -------------------------------------
@@ -76,6 +120,25 @@
 	@media #{$media} and ($query: $val) {
 		@content;
 	}
+}
+
+// ----- Selection ------ //
+
+@mixin selection($color, $background) {
+	$prefixes: ("-moz-", "");
+	@each $prefix in $prefixes {
+		::#{$prefix}selection {
+			color: $color;
+			background: $background;
+		}
+	}
+}
+
+// ----- Selection ------ //
+
+@mixin rhythm-to($leader: 0, $padding-leader: 0, $padding-trailer: 0, $trailer: 0, $font-size: $base-font-size) {
+	@include adjust-font-size-to($font-size);
+	@include rhythm($leader, $padding-leader, $padding-trailer, $trailer, $font-size);
 }
 
 // -------------------------------------

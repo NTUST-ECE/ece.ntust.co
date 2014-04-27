@@ -8,7 +8,7 @@
     .hero
     %nav.main-menu
       = partial "partials/nav"
-    %section.content
-      %h1= current_page.data.title || data.config.siteTitle
+    %section.content.vertical-rhythm
+      -# %h1= current_page.data.title || data.config.siteTitle
       = yield
     %footer
