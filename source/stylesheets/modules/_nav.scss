@@ -78,18 +78,56 @@ nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
 
 	@include respond-to($desktop-min-width) {
 
+		margin-left: -0.2em;
+
 		ul {
 			position: relative;
+			background-color: $base-bgc;
+
+			li {
+				display: block;
+				position: relative;
+				z-index: 100;
+				background-color: $base-bgc;
+			}
 
 			&::after {
 				content: " ";
 				position: absolute;
+				z-index: 120;
 				top: 0;
-				right: 14px;
+				right: 0.2em;
 				width: 5px;
 				height: 100%;
 				border-left: 1px solid darken($base-bgc, 10%);
 				border-right: 1px solid darken($base-bgc, 10%);
+			}
+
+			.a {
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				z-index: 2;
+				height: 100%;
+				width: 100%;
+				@include perspective(1000px);
+				overflow: visible;
+
+				&::before {
+					content: " ";
+					position: absolute;
+					z-index: 2;
+					height: 100%;
+					width: auto;
+					top: 0;
+					right: 30px;
+					left: 0;
+					background-color: #a0f;
+					@include transform-origin(0, 50%);
+					@include transform(rotateY(20deg));
+					@include box-shadow(0 0 30px rgba(0,0,0, .32));
+				}
 			}
 		}
 	}

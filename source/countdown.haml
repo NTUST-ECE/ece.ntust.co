@@ -1,5 +1,6 @@
 ---
 layout: false
+title: 'Count Down'
 ---
 !!!
 %html{lang: "zh-tw", class: "han-la"}
@@ -26,26 +27,70 @@ layout: false
     = partial "partials/justfont"
     = javascript_include_tag "modernizr"
 
+    :scss
+
+      body {
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .page {
+        overflow: hidden;
+        height: 100%;
+      }
+      
+      .cd .animation {
+        position: relative;
+        background-color: #f7f3ea;
+        .background {
+          opacity: 0;
+        }
+        .animation {
+          position: absolute; 
+          opacity: .5; 
+          width: 94%;
+          left: 3%;
+          left: 1;
+          top: -5.45%;
+
+          img {
+            position: relative;
+            z-index: 100;
+          }
+        }
+        .animation::after {
+          z-index: 10;
+          content: " ";
+          position: absolute;
+          width: 99999px;
+          height: 99999px;
+          top: -9999px;
+          left: -9999px;
+          background-color: white;
+        }
+      }
+
   %body{class: page_classes}
-    .page
+    .page{:style => "overflow: hidden; background-color: #f7f3ea;"}
       .container
         %header
-          .logo
-            %hgroup
-              %h1= current_page.data.title || data.config.siteTitle
-              %h2= current_page.data.sub_title || data.config.siteSubTitle
-        %nav.main-menu
-          %h1 Main Navigation
-          %ul
-            = partial "partials/nav"
-        %section.content.vertical-rhythm
-          -# %h1= current_page.data.title || data.config.siteTitle
-          a s
-        %footer
-          = partial "partials/footer"
-
+        %section.cd.vertical-rhythm
+          OH hi.
+          .animation
+            .background= image_tag "ece/ECE_theme.jpg"
+            .animation= image_tag "ece/ECE_animated.gif", :style => "max-width: none; width: 100%;"
+    .preload
+      = image_tag "ece/ECE_theme.jpg", :class => "preload", :style => "opacity: 0; position: absolute; top: 0; left:0;"
+      = image_tag "ece/ECE_animated.gif", :class => "preload", :style => "opacity: 0; position: absolute; top: 0; left:0;"
     = javascript_include_tag "all"
     = auto_javascript_include_tag
+
+    :coffee
+      cmh = $(window).height()
+      $('.cd').css 'min-height', cmh
+      # $(window).load ->
+      console.log 'Yo!'
+      $('.preload').html('')
 
     -# Google Analysis
     = partial "partials/GA"

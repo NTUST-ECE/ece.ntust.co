@@ -35,8 +35,8 @@ refreshViev = () ->
   vrLineHeight = $('.vertical-rhythm > p').css 'line-height'
   vrLineHeight = parseInt(vrLineHeight, 10);
   # $('.vertical-rhythm img').baseline vrLineHeight
-  $('.vertical-rhythm div').baseline vrLineHeight
-  $('.vertical-rhythm p').baseline vrLineHeight
+  $('.vertical-rhythm div').baseline vrLineHeight if vrLineHeight
+  $('.vertical-rhythm p').baseline vrLineHeight if vrLineHeight
   # 為包附圖片的元素加上 class
   $('.content p:has(img), .content div:has(img)').addClass 'img'
 

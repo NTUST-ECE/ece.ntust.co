@@ -116,6 +116,11 @@ strong {
 	font-family: "xingothic-tc-w6";
 }
 
+code, .code, .content-box, %content-box {
+	overflow: scroll;
+	background-image: linear-gradient(to right,#f0f2f0 12.5%,rgba(240,242,240,0)),linear-gradient(to right,rgba(240,242,240,0),#f0f2f0 87.5%),radial-gradient(farthest-side at 0 50%,rgba(153,153,153,0.3),rgba(153,153,153,0)),radial-gradient(farthest-side at 100% 50%,rgba(153,153,153,0.3),rgba(153,153,153,0));
+}
+
 p.img {
 	text-align: center;
 	color: lighten($base-color, 20%);
