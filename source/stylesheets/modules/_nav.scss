@@ -42,7 +42,9 @@ nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
 			padding: $base-line-height/4 - 7 18px $base-line-height/4 + 7;
 			margin: $base-line-height/4 0;
 			position: relative;
-			font-family: "xingothic-tc-w6";
+			font-family: "xingothic-tc-w6", "xingothic-tc-w4";
+			@include transition-property(background-color, text-shadow);
+			@include transition-duration(.1s, 0);
 
 			small {
 				display: block;
@@ -57,22 +59,29 @@ nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
 				content: " ";
 				background-color: $red;
 				opacity: 0;
-				@include transition-duration(.2s);
-				@include transition-delay(.3s);
-				width: 4px;
+				@include transition-property(opacity, width);
+				@include transition-duration(.2s, .2s);
+				@include transition-delay(.4s, .4s);
+				width: 0;
 				height: 100%;
 				position: absolute;
 				top: 0;
 				left: 0;
 			}
 
+			&:hover {
+				background-color: rgba(0,0,0, .1);
+			}
+
 			&:hover::before, &.active::before {
 				opacity: 1;
+				width: 4px;
 			}
 		}
 
 		.active a::before {
 			opacity: 1;
+			width: 4px;
 		}
 	}
 
@@ -89,6 +98,14 @@ nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
 				position: relative;
 				z-index: 100;
 				background-color: $base-bgc;
+			}
+
+			&::before {
+				content: " ";
+				position: absolute;
+				z-index: 2;
+				@include border-radius(10px);
+				background-color: #f00;
 			}
 
 			&::after {
@@ -130,6 +147,15 @@ nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
 				}
 			}
 		}
+	}
+}
+
+// ----- 萬惡的 Windows ----- //
+
+.windows nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
+
+	a, li {
+		font-family: "xingothic-tc-w4", "微軟正黑體" !important;
 	}
 }
 

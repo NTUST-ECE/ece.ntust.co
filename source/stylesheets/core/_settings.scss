@@ -11,6 +11,10 @@
 
 // ...
 
+$base-sans-serif-font: "xingothic-tc-w3", "蘋果儷中黑", "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-serif-font: "蘋果儷細宋", "Adobe 明體", "Times New Roman", Times, serif;
+$base-font: $base-sans-serif-font;
+
 // -------------------------------------
 //   Variables
 // -------------------------------------
@@ -69,3 +73,6 @@ $phone-min-width: 341px;
 $tablet-min-width: 769px;
 $desktop-min-width: 941px;
 $large-desktop-min-width: 1441px;
+$very-large-desktop-min-width: 1700px;
+
+$infinite: 999999px;

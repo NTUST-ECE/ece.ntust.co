@@ -18,7 +18,8 @@
 @include selection($warm-white, $warm-black);
 
 body {
-	font-family: "xingothic-tc-w4", "蘋果儷中黑", "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: $base-font;
+	text-rendering: optimizeLegibility;
 }
 
 p, blockquote, code, dl, ol, ul {
@@ -31,12 +32,12 @@ p, blockquote, code, dl, ol, ul {
 
 #{headings(1,2)} {
 	overflow: hidden;
-	font-family: "xingothic-tc-w8";
+	font-family: "xingothic-tc-w8", $base-font;
 }
 
 #{headings(3,6)} {
 	overflow: hidden;
-	font-family: "xingothic-tc-w6";
+	font-family: "xingothic-tc-w6", $base-font;
 }
 
 h1, %c-h1 {
@@ -105,20 +106,31 @@ h6, %c-h6 {
 blockquote {
 	margin-bottom: 0;
 	border-left: 5px solid $warm-black;
-	font-family: "datf3";
+	font-family: "dats4", $base-serif-font;
 
 	p {
-		font-size: 1rem;
+		font-size: 110%;
 	}
 }
 
 strong {
-	font-family: "xingothic-tc-w6";
+	font-family: "xingothic-tc-w6", $base-font;
+}
+
+.content p.img, .content div.img {
+	padding-bottom: 18px;
 }
 
 code, .code, .content-box, %content-box {
-	overflow: scroll;
-	background-image: linear-gradient(to right,#f0f2f0 12.5%,rgba(240,242,240,0)),linear-gradient(to right,rgba(240,242,240,0),#f0f2f0 87.5%),radial-gradient(farthest-side at 0 50%,rgba(153,153,153,0.3),rgba(153,153,153,0)),radial-gradient(farthest-side at 100% 50%,rgba(153,153,153,0.3),rgba(153,153,153,0));
+	overflow: auto;
+}
+
+// -------------------------------------
+//   輔助元素
+// -------------------------------------
+
+.lazyload {
+	display: none;
 }
 
 p.img {
@@ -140,8 +152,38 @@ p.img {
 	}
 }
 
+// -------------------------------------
+//   漢字標準格式 hack
+//   -> 印刷品般的漢字網頁排版框架
+// -------------------------------------
+
+// ----- 不會影響垂直旋律的強調點 ----- //
+
+em:lang(zh), em:lang(ja) {
+	@include experimental(text-emphasis, none, -moz, -webkit, -o, -ms, -khtml, official);
+
+	.char.cjk {
+		position: relative;
+
+		&::after {
+			content: "•";
+			display: block;
+			position: absolute;
+			top: 0.4em;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.char.latin {
+		font-style: italic;
+	}
+}
+
+// ----- poem-like ----- //
+
 .poem-like, %poem-like {
-	font-family: "datf3";
+	font-family: "datf3", $base-serif-font;;
 }
 
 // -------------------------------------

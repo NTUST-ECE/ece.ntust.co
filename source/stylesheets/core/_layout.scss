@@ -42,6 +42,10 @@ body {
 		overflow-x: hidden;
 	}
 
+	* {
+		@include transition-duration(.1s);
+	}
+
 	// @if $debug == true {
 	// 	&:hover {
 	// 		@include baseline-grid-background;
@@ -105,6 +109,9 @@ body {
 				z-index: 11;
 				@include span-columns(5, 8);
 				margin-left: - space(1, 8);
+				padding-bottom: 0;
+
+				img { margin-bottom: 0; }
 			}
 
 			.pull-right.box {
@@ -115,6 +122,9 @@ body {
 				margin-left: gutter(8);
 				margin-right: - space(1, 8);
 				padding-right: 48px;
+				padding-bottom: 0;
+
+				img { margin-bottom: 0; }
 			}
 
 			.pull-left.text {
@@ -188,7 +198,7 @@ body {
 	.content {
 		position: relative;
 		overflow: visible;
-		background-color: $content-bgc;
+		background-color: transparent;
 		margin-top: 0;
 		padding-top: $base-line-height;
 		z-index: 5;
@@ -198,11 +208,25 @@ body {
 			position: absolute;
 			background-color: $content-bgc;
 			height: 100%;
-			width: 99999999px;
+			width: $infinite;
 			top: 0;
 			right: 0;
 			z-index: 0;
+			@include experimental(clip-path, polygon(0% 0%, $infinite - 80 0%, 100% 50px, 100% 100%, 0% 100%, 0% 0%), -moz, -webkit, -o, -ms, -khtml, official);
+			@include transition-property(clip-path);
+			@include transition-duration(.8s);
 		}
+	}
+}
+
+// ----- Responsive - DesktopXL ----- //
+
+@include respond-to($large-desktop-min-width) {}
+
+@include respond-to($very-large-desktop-min-width) {
+
+	.container {
+		margin-left: 14.4%;
 	}
 }
 
