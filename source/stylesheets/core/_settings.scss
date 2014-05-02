@@ -11,33 +11,28 @@
 
 // ...
 
-$base-sans-serif-font: "xingothic-tc-w3", "蘋果儷中黑", "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-serif-font: "蘋果儷細宋", "Adobe 明體", "Times New Roman", Times, serif;
-$base-font: $base-sans-serif-font;
-
 // -------------------------------------
 //   Variables
 // -------------------------------------
 
 // ----- Base Colors ----- //
 
+$black: #333;
 $warm-black: #594f44;
 $warm-white: #f9f3ed;
-$orange: #d74c11;
 $red: #bf280d;
-$blue: #357abb;
-$dark-blue: #3b4354;
+$green: #3f8367;
+$blue: #0e83c2;
 
+$base-color: $black;
+$base-link-color: $blue;
 $base-bgc: lighten($warm-white, 4%);
 $base-background: $base-bgc;
-$base-color: darken($warm-black, 4%);
-$base-link-color: $blue;
 $content-bgc: $base-background;
 
 $nav-active-color: $red;
 
-$content-background: $warm-white;
-
+$orange: #d74c11;
 $grid-background-column-color: rgba(darken($orange, 8%), .2);
 $grid-background-baseline-color: rgba($warm-black, .3);
 
@@ -49,30 +44,34 @@ $base-boxShadow: 0 1px 2px rgba($base-color, 0.25);
 
 // ----- Base Content ----- //
 
-$base-fontFamily: sans-serif;
-$base-fontSize: 16px;
-$base-lineHeight: 1.5;
-
-// ----- Base Layout ----- //
-
-$base-whitespace: 20px;
-
-// ----- Content ----- //
-
-$c-header-fontFamily: sans-serif;
+// Compass Vertical Rhythm
 $base-font-size: 20px;
 $base-line-height: $base-font-size * 3/2;
 
+$base-sansSerif-fontFamily: "xingothic-tc-w3", "蘋果儷中黑", "微軟正黑體", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-serif-fontFamily: "蘋果儷細宋", "Adobe 明體", "Times New Roman", Times, serif;
+$base-fontFamily: $base-sansSerif-fontFamily;
+$base-fontSize: 17px;
+$base-lineHeight: $base-line-height;
+
+// ----- Base Layout ----- //
+
+// $base-whitespace: 20px;
+
+// ----- Content ----- //
+
 // ----- Layout ----- //
 
-$l-maxWidth: 980px;
+$container-maxWidth: 1200px;
 
-// ----- Responsive ----- //
+// ----- Responsive Breakpoints ----- //
 
 $phone-min-width: 341px;
 $tablet-min-width: 769px;
 $desktop-min-width: 941px;
 $large-desktop-min-width: 1441px;
 $very-large-desktop-min-width: 1700px;
+
+// ----- Constants ----- //
 
 $infinite: 999999px;

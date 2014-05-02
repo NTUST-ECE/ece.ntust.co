@@ -6,7 +6,7 @@
 // *************************************
 
 // -------------------------------------
-//   Susy Gird
+//   Susy Gird Config
 // -------------------------------------
 
 $total-columns: 5;
@@ -23,10 +23,9 @@ $desktop: $desktop-min-width $desktop-columns;
 // => if (min-width $desktop-min-width) desktop -> use $desktop-columns
 
 // -------------------------------------
-//   Composition
+//   Base
+//   -> body, body wrapper
 // -------------------------------------
-
-// ----- Body ----- //
 
 body {
 	cursor: auto;
@@ -45,33 +44,25 @@ body {
 	* {
 		@include transition-duration(.1s);
 	}
-
-	// @if $debug == true {
-	// 	&:hover {
-	// 		@include baseline-grid-background;
-	// 		> .container { @include susy-grid-background; }
-	// 	}
-	// }
 }
 
-// ----- Container ----- //
+// -------------------------------------
+//   Composition
+//   -> header, footer, nav, content
+// -------------------------------------
 
 .container {
 	@include container($total-columns, $tablet, $desktop);
 	@include pie-clearfix;
 
+	// ----- Tablet + ----- //
 	@include at-breakpoint($tablet) {
 
-		.main-menu {
-			@include span-columns(2);
-		}
-
-		.content {
-			@include span-columns(8 omega);
+		header, footer {
+			@include span-columns($tablet-columns);
 		}
 
 		footer {
-			@include span-columns(10);
 			position: relative;
 			z-index: 10;
 
@@ -91,11 +82,29 @@ body {
 				left: -9999px;
 			}
 		}
+
+		nav {
+			@include span-columns(2);
+
+			position: relative;
+			z-index: 10;
+		}
+
+		.content {
+			@include span-columns(8 omega);
+		}
 	}
 
+	// ----- Desktop + ----- //
 	@include at-breakpoint($desktop) {
 
-		.main-menu {
+		max-width: $container-maxWidth;
+
+		header, footer {
+			@include span-columns($desktop-columns);
+		}
+
+		nav {
 			@include span-columns(2);
 		}
 
@@ -103,65 +112,211 @@ body {
 			@include span-columns(9 omega);
 			@include suffix(1);
 			@include post(1);
+		}
+	}
 
-			.pull-left.box {
-				position: relative;
-				z-index: 11;
-				@include span-columns(5, 8);
-				margin-left: - space(1, 8);
-				padding-bottom: 0;
+	// ----- XXL Desktop + ----- //
+	@include respond-to($very-large-desktop-min-width) {
 
-				img { margin-bottom: 0; }
+		margin-left: 14.4%;
+	}
+}
+
+// -------------------------------------
+//   Header
+//   -> 頭
+// -------------------------------------
+
+header {
+
+	hgroup {
+		@include replace-text-with-dimensions('background.png', '', '', '');
+	}
+
+}
+
+// -------------------------------------
+//   Footer
+//   -> 腳
+// -------------------------------------
+
+footer {
+
+}
+
+// -------------------------------------
+//   Nav
+//   -> 導覽
+// -------------------------------------
+
+nav.main-menu,
+html:lang(zh) nav.main-menu,
+html:lang(jp) nav.main-menu {
+
+	> ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	li, a {
+		@include ellipsis;
+		display: block;
+	}
+
+	> h1 {
+		display: none;
+	}
+
+	// ----- Tablet + ----- //
+	@include respond-to($tablet-min-width) {
+
+		ul {
+			margin-top: $base-line-height/2*3 - 1px;
+		}
+
+		li {
+			height: 60px;
+		}
+
+		a {
+			width: 100%;
+			font-size: 20px;
+			line-height: $base-line-height;
+			padding: $base-line-height/4 - 7 18px $base-line-height/4 + 7;
+			margin: $base-line-height/4 0;
+			position: relative;
+			font-family: "xingothic-tc-w6", "xingothic-tc-w4";
+			@include transition-property(background-color, text-shadow);
+			@include transition-duration(.1s, 0);
+
+			small {
+				display: block;
+				position: absolute;
+				bottom: 5px;
+				font-size: 12px;
+				line-height: 12px;
+				font-family: "xingothic-tc-w3";
 			}
 
-			.pull-right.box {
-				position: relative;
-				z-index: 11;
-				@include span-columns(5, 8);
-				@include omega;
-				margin-left: gutter(8);
-				margin-right: - space(1, 8);
-				padding-right: 48px;
-				padding-bottom: 0;
-
-				img { margin-bottom: 0; }
+			&::before {
+				content: " ";
+				background-color: $red;
+				opacity: 0;
+				@include transition-property(opacity, width);
+				@include transition-duration(.2s, .2s);
+				@include transition-delay(.4s, .4s);
+				width: 0;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
 			}
 
-			.pull-left.text {
-				position: relative;
-				z-index: 11;
-				@include span-columns(4, 8);
-				margin-left: - space(1, 8);
+			&:hover {
+				background-color: rgba(0,0,0, .1);
 			}
 
-			.pull-right.text {
+			&:hover::before, &.active::before {
+				opacity: 1;
+				width: 4px;
+			}
+		}
+
+		.active a::before {
+			opacity: 1;
+			width: 4px;
+		}
+	}
+
+	// ----- Desktop + ----- //
+	@include respond-to($desktop-min-width) {
+
+		margin-left: -0.2em;
+
+		ul {
+			position: relative;
+			background-color: $base-bgc;
+
+			li {
+				display: block;
 				position: relative;
-				z-index: 11;
-				@include span-columns(4, 8);
-				@include omega;
-				margin-left: gutter(8);
-				margin-right: - space(1, 8);
-				padding-right: 48px;
+				z-index: 100;
+				background-color: $base-bgc;
+			}
+
+			&::before {
+				content: " ";
+				position: absolute;
+				z-index: 2;
+				@include border-radius(10px);
+				background-color: #f00;
+			}
+
+			&::after {
+				content: " ";
+				position: absolute;
+				z-index: 120;
+				top: 0;
+				right: 0.2em;
+				width: 5px;
+				height: 100%;
+				border-left: 1px solid darken($base-bgc, 10%);
+				border-right: 1px solid darken($base-bgc, 10%);
+			}
+
+			.a {
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				z-index: 2;
+				height: 100%;
+				width: 100%;
+				@include perspective(1000px);
+				overflow: visible;
+
+				&::before {
+					content: " ";
+					position: absolute;
+					z-index: 2;
+					height: 100%;
+					width: auto;
+					top: 0;
+					right: 30px;
+					left: 0;
+					background-color: #a0f;
+					@include transform-origin(0, 50%);
+					@include transform(rotateY(20deg));
+					@include box-shadow(0 0 30px rgba(0,0,0, .32));
+				}
 			}
 		}
 	}
 }
 
-// ----- Responsive - Tablet ----- //
+// ----- 萬惡的 Windows ----- //
 
-@include respond-to($tablet-min-width) {
+.windows nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
 
-	.main-menu {
-		position: relative;
-		z-index: 10;
+	a, li {
+		font-family: "xingothic-tc-w4", "微軟正黑體" !important;
 	}
+}
 
-	.content > * {
-		position: relative;
-		z-index: 10;
-	}
+// -------------------------------------
+//   Content
+//   -> 內文排版
+// -------------------------------------
 
-	.content {
+.content {
+
+	// ----- Tablet + ----- //
+	@include respond-to($tablet-min-width) {
+
 		position: relative;
 		overflow: visible;
 		background-color: $content-bgc;
@@ -179,23 +334,16 @@ body {
 			right: - $grid-padding;
 			z-index: 0;
 		}
-	}
-}
 
-// ----- Responsive - Desktop ----- //
-
-@include respond-to($desktop-min-width) {
-
-	.container {
-		max-width: 1200px;
+		> * {
+			position: relative;
+			z-index: 10;
+		}
 	}
 
-	.content > * {
-		position: relative;
-		z-index: 10;
-	}
+	// ----- Desktop + ----- //
+	@include respond-to($desktop-min-width) {
 
-	.content {
 		position: relative;
 		overflow: visible;
 		background-color: transparent;
@@ -216,22 +364,71 @@ body {
 			@include transition-property(clip-path);
 			@include transition-duration(.8s);
 		}
+
+		> * {
+			position: relative;
+			z-index: 10;
+		}
+
+		.pull-left {
+			text-align: right;
+		}
+
+		.pull-left.box {
+			position: relative;
+			z-index: 11;
+			@include span-columns(5, 8);
+			margin-left: - space(1, 8);
+			padding-bottom: 0;
+
+			img { margin-bottom: 0; }
+		}
+
+		.pull-right.box {
+			position: relative;
+			z-index: 11;
+			@include span-columns(5, 8);
+			@include omega;
+			margin-left: gutter(8);
+			margin-right: - space(1, 8);
+			padding-right: 48px;
+			padding-bottom: 0;
+
+			img { margin-bottom: 0; }
+		}
+
+		.pull-left.text, .pull-right.text {
+			@include rhythm-to(0, 0.5, 0.5, 0, $base-font-size*2);
+			color: $red;
+			@include selection($warm-white, $red);
+			padding-bottom: 0;
+		}
+
+		.pull-left.text {
+			position: relative;
+			z-index: 11;
+			@include span-columns(4, 8);
+			margin-left: - space(1, 8);
+		}
+
+		.pull-right.text {
+			position: relative;
+			z-index: 11;
+			@include span-columns(4, 8);
+			@include omega;
+			margin-left: gutter(8);
+			margin-right: - space(1, 8);
+			padding-right: 48px;
+		}
 	}
-}
 
-// ----- Responsive - DesktopXL ----- //
-
-@include respond-to($large-desktop-min-width) {}
-
-@include respond-to($very-large-desktop-min-width) {
-
-	.container {
-		margin-left: 14.4%;
-	}
+	// ----- XL Desktop + ----- //
+	@include respond-to($large-desktop-min-width) {}
 }
 
 // -------------------------------------
 //   Hero
+//   -> 英雄
 // -------------------------------------
 
 .hero {
@@ -251,65 +448,9 @@ body {
 }
 
 // -------------------------------------
-//   Bucket
+//   Index
+//   -> 首頁
 // -------------------------------------
 
-.l-bucket {}
-
-// -------------------------------------
-//   Card
-// -------------------------------------
-
-.l-card {}
-
-// -------------------------------------
-//   Cell
-// -------------------------------------
-
-%l-cell, .l-cell {
-	margin: 0 auto;
-	max-width: rem($l-maxWidth);
-	padding: 0 rem(60px);
-}
-
-// -------------------------------------
-//   Grid
-// -------------------------------------
-
-.l-grid {}
-
-.l-grid-box {}
-
-// -------------------------------------
-//   Row
-// -------------------------------------
-
-.l-row {}
-
-// -------------------------------------
-//   Utilities
-// -------------------------------------
-
-%l-block, .l-block {
-	display: block;
-}
-
-%l-condense, .l-condense {
-	margin-bottom: rem($base-whitespace / 2);
-}
-
-%l-pullLeft, .l-pullLeft {
-	float: left;
-}
-
-%l-pullRight, .l-pullRight {
-	float: right;
-}
-
-%l-space, .l-space {
-	margin-bottom: rem($base-whitespace);
-}
-
-%l-xspace, .l-xspace {
-	margin-bottom: rem($base-whitespace * 2);
+body.index {
 }

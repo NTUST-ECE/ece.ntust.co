@@ -18,7 +18,7 @@
 @include selection($warm-white, $warm-black);
 
 body {
-	font-family: $base-font;
+	font-family: $base-fontFamily;
 	text-rendering: optimizeLegibility;
 }
 
@@ -32,12 +32,12 @@ p, blockquote, code, dl, ol, ul {
 
 #{headings(1,2)} {
 	overflow: hidden;
-	font-family: "xingothic-tc-w8", $base-font;
+	font-family: "xingothic-tc-w8", $base-fontFamily;
 }
 
 #{headings(3,6)} {
 	overflow: hidden;
-	font-family: "xingothic-tc-w6", $base-font;
+	font-family: "xingothic-tc-w6", $base-fontFamily;
 }
 
 h1, %c-h1 {
@@ -67,6 +67,8 @@ h5, %c-h5 {
 h6, %c-h6 {
 	@include rhythm-to(0, 0.5, 0.5, 0, 20px);
 }
+
+// ----- For 小手機 ----- //
 
 @media only screen and (max-width: $phone-min-width) {
 
@@ -106,7 +108,7 @@ h6, %c-h6 {
 blockquote {
 	margin-bottom: 0;
 	border-left: 5px solid $warm-black;
-	font-family: "dats4", $base-serif-font;
+	font-family: "dats4", $base-serif-fontFamily;
 
 	p {
 		font-size: 110%;
@@ -114,7 +116,7 @@ blockquote {
 }
 
 strong {
-	font-family: "xingothic-tc-w6", $base-font;
+	font-family: "xingothic-tc-w6", $base-fontFamily;
 }
 
 .content p.img, .content div.img {
@@ -137,19 +139,6 @@ p.img {
 	text-align: center;
 	color: lighten($base-color, 20%);
 	line-height: 36px;
-}
-
-.pull-left.text, .pull-right.text {
-	@include rhythm-to(0, 0.5, 0.5, 0, $base-font-size*2);
-	color: $red;
-	@include selection($warm-white, $red);
-	padding-bottom: 0;
-}
-
-.pull-left {
-	@include respond-to($desktop-min-width) {
-		text-align: right;
-	}
 }
 
 // -------------------------------------
@@ -183,7 +172,7 @@ em:lang(zh), em:lang(ja) {
 // ----- poem-like ----- //
 
 .poem-like, %poem-like {
-	font-family: "datf3", $base-serif-font;;
+	font-family: "datf3", $base-serif-fontFamily;
 }
 
 // -------------------------------------

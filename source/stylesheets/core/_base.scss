@@ -25,6 +25,10 @@ p {
 	font-size: rem($base-fontSize);
 }
 
+blockquote, blockquote p {
+	color: $warm-black;
+}
+
 // -------------------------------------
 //   Inline Content
 // -------------------------------------
