@@ -1,4 +1,5 @@
 = wrap_layout :layout do
+  %a#hero-trigger
   .container
     %header
       .logo
@@ -15,4 +16,4 @@
       = yield
     %footer
       = partial "partials/footer"
-  .hero
+  .hero= partial "partials/hero"

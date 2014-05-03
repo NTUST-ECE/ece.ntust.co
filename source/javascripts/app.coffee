@@ -1,6 +1,6 @@
 console.log 'hi'
 
-waitForFinalEvent = (->
+this.waitForFinalEvent = (->
   timers = {}
   (callback, ms, uniqueId) ->
     uniqueId = "Don't call this twice without a uniqueId"  unless uniqueId
@@ -9,31 +9,15 @@ waitForFinalEvent = (->
     return
 )()
 
-# 針對不同瀏覽器及系統的處理
-if window.chrome
-  isChrome = true
-  $('body').addClass 'chrome'
-if navigator.platform.toUpperCase().indexOf('MAC')>=0
-  isMac = true
-  $('body').addClass 'mac'
-if navigator.platform.match(/(iPhone|iPod|iPad)/i)
-  isIOS = true
-  $('body').addClass 'ios'
-if navigator.appVersion.match(/(Win)/i)
-  isWin = true
-  $('body').addClass 'windows'
-
-$(document).ready ->
-  # lazyload all images
-  llThreshold = (if isIOS then 5000 else 0)
-  $(".lazyload").show()
-  $("img").lazyload
-    effect: "fadeIn"
-    threshold: llThreshold
-    failure_limit: 10
-
-  $("code").each ->
-    $(this).html $(this).html().replace(/\n/g, "<br />")
+showHero = (id) ->
+  # $('.hero .item').css 'display', 'none'
+  $('.hero .item:nth-child(' + id + ')').css? 'opacity', '0'
+  $('.hero .item:nth-child(' + id + ')').css? 'display', 'block'
+  $('#hero-trigger').attr 'href', $('.hero .item:nth-child(' + id + ')').attr? 'data-link'
+  $('#hero-trigger').attr 'target', '_blank'
+  setTimeout ->
+    $('.hero .item:nth-child(' + id + ')').css? 'opacity', 'auto'
+  , 10
 
 refreshBaseline = () ->
   # set baseline for vertical rhythm
@@ -55,6 +39,42 @@ refreshViev = () ->
   $('.content p:has(img), .content div:has(img)').addClass 'img'
 
 refreshViev()
+
+# 針對不同瀏覽器及系統的處理
+if window.chrome
+  isChrome = true
+  $('body').addClass 'chrome'
+if Modernizr.touch
+  isTouch = true
+  $('body').addClass 'touch'
+else
+  $('body').addClass 'non-touch'
+if navigator.platform.toUpperCase().indexOf('MAC')>=0
+  isMac = true
+  $('body').addClass 'mac'
+if navigator.platform.match(/(iPhone|iPod|iPad)/i)
+  isIOS = true
+  $('body').addClass 'ios'
+if navigator.appVersion.match(/(Win)/i)
+  isWin = true
+  $('body').addClass 'windows'
+
+$(document).ready ->
+  # lazyload all images
+  llThreshold = (if isIOS then 5000 else 0)
+  $(".lazyload").show()
+  $("img").lazyload
+    effect: "fadeIn"
+    threshold: llThreshold
+    failure_limit: 10
+
+  # 隨機顯示一張 Hero
+  heroItems = $('.hero .item')
+  showHero(parseInt((Math.random()*10000)%heroItems.length+1));
+
+  # Code block
+  $("code").each ->
+    $(this).html $(this).html().replace(/\n/g, "<br />")
 
 # on load !
 $(window).load ->

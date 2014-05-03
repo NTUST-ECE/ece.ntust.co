@@ -131,8 +131,13 @@ code, .code, .content-box, %content-box {
 //   輔助元素
 // -------------------------------------
 
-.lazyload {
+.lazyload { // 應該移動到 moudle?
 	display: none;
+}
+
+.c-light, %c-light {
+	font-family: "xingothic-tc-w3", $base-fontFamily;
+	font-weight: 300;
 }
 
 p.img {

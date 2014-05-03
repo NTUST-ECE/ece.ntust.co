@@ -29,6 +29,7 @@ $desktop: $desktop-min-width $desktop-columns;
 
 body {
 	cursor: auto;
+	position: relative;
 	height: auto;
 	margin: 0;
 	padding: 0;
@@ -37,6 +38,7 @@ body {
 
 	// Warp all elements in a div
 	> div {
+		position: relative;
 		width: 100%;
 		overflow-x: hidden;
 	}
@@ -75,7 +77,7 @@ body {
 				content: " ";
 				position: absolute;
 				z-index: -1;
-				width: 99999px;
+				width: $infinite;
 				height: 100%;
 				background-color: #19f;
 				top: 0;
@@ -130,9 +132,27 @@ body {
 header {
 
 	hgroup {
+		position: relative;
+		z-index: 1000px;
 		@include replace-text-with-dimensions('background.png', '', '', '');
 	}
 
+}
+
+// ----- 桌面版首頁專用 ----- //
+@include respond-to($tablet-min-width) {
+
+	header {
+		height: $header-height;
+	}
+
+	body.index header {
+		height: $index-header-height;
+	}
+
+	body.ios.index header {
+		height: $index-header-height-fallback;
+	}
 }
 
 // -------------------------------------
@@ -308,6 +328,28 @@ html:lang(jp) nav.main-menu {
 }
 
 // -------------------------------------
+//   Off-Canvas
+// -------------------------------------
+
+.off-canvas {
+
+	// @include perspective(1000px);
+	height: 100vh;
+	overflow: hidden;
+
+	.container {
+		position: absolute;
+		margin-left: 300px;
+		width: 100vw;
+		// @include transform(rotateY(20deg));
+	}
+
+	nav {
+		position: absolute;
+	}
+}
+
+// -------------------------------------
 //   Content
 //   -> 內文排版
 // -------------------------------------
@@ -325,6 +367,7 @@ html:lang(jp) nav.main-menu {
 		z-index: 5;
 
 		&::before {
+			@include box-shadow(0 0 18px rgba($black, .7));
 			content: " ";
 			position: absolute;
 			background-color: $content-bgc;
@@ -357,6 +400,7 @@ html:lang(jp) nav.main-menu {
 			background-color: $content-bgc;
 			height: 100%;
 			width: $infinite;
+			width: 100vw;
 			top: 0;
 			right: 0;
 			z-index: 0;
@@ -432,11 +476,82 @@ html:lang(jp) nav.main-menu {
 // -------------------------------------
 
 .hero {
+	@include transition-property(opacity);
+	@include transition-duration(.5s);
 	display: none;
+	position: fixed;
+	background-image: url('/images/backgrounds/navy.png');
+	@include background-image-2x('/images/backgrounds/navy@2X.png', 600px, 385px);
+
+	.item {
+		@include transition-property(opacity, filter, background-position);
+		@include transition-duration(.5s, .5s, .5s);
+		@include transition-delay(0s, 0s, 1.4s);
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: 50% 83%;
+		opacity: .28;
+		@include filter(grayscale(36%));
+
+		.inner {
+			@include container($total-columns, $tablet, $desktop);
+			@extend %c-light;
+			position: relative;
+			height: 100%;
+			padding-top: $base-line-height/4;
+
+			.title, .sub-title, .credit {
+				@include text-shadow(0 0 4px #000, 4px 0 8px rgba(0,0,0, .5), -4px 0 8px rgba(0,0,0, .5));
+				text-align: right;
+				color: darken($white, 12%);
+			}
+
+			.title {
+				@include opacity(.8);
+				font-size: 14px;
+			}
+
+			.sub-title {
+				@include opacity(.6);
+				font-size: 10px;
+			}
+
+			.credit {
+				@extend .sub-title;
+
+				&::before {
+					content: "Photo Credit / ";
+				}
+			}
+
+			@include at-breakpoint($tablet) {
+
+				max-width: $container-maxWidth;
+
+				.title, .sub-title, .credit {
+					@include span-columns($tablet-columns - 6 omega, $tablet-columns);
+					@include pre(6, $tablet-columns);
+					line-height: 15px;
+				}
+			}
+			@include at-breakpoint($desktop) {
+
+				max-width: $container-maxWidth;
+
+				.title, .sub-title, .credit {
+					@include span-columns($desktop-columns - 8 omega, $desktop-columns);
+					@include pre(7, $desktop-columns);
+					@include post(1, $desktop-columns);
+					line-height: 15px;
+				}
+			}
+		}
+	}
 
 	@include respond-to($tablet-min-width) {
 		display: block;
-		position: fixed;
 		z-index: -100;
 		width: 100%;
 		height: 100%;
@@ -444,6 +559,96 @@ html:lang(jp) nav.main-menu {
 		left: 0;
 		right: 0;
 		background-color: #333;
+	}
+
+	// ----- XXL Desktop + ----- //
+	@include respond-to($very-large-desktop-min-width) {
+
+		.item .inner {
+			margin-left: 14.4%;
+		}
+	}
+}
+
+body.index .hero, #hero-trigger:hover ~ .hero {
+	.item {
+		background-position: 50% 60%;
+	}
+}
+
+// ----- 背景 ----- //
+
+// .wrapper::before {
+// 	content: " ";
+// 	position: absolute;
+// 	left: 0;
+// 	top: 0;
+// 	height: 100%;
+// 	width: 100%;
+// 	background-image: linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .0) 100%), linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .8) 100%), linear-gradient(to bottom, rgba($black, .8) 0%, rgba($black, .8) 100%);
+// 	background-position: 50% 0, 50% $header-height/2, 50% $header-height*10;
+// 	background-size: 100% $header-height/2, 100% $header-height/2*19, 100% 100%;
+// 	background-repeat: no-repeat;
+// }
+
+// .wrapper {
+// 	@include background(linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .8) 100vh));
+// }
+
+// .container::before {
+// 	content: " ";
+// 	position: absolute;
+// 	left: 0;
+// 	top: 0;
+// 	height: 100%;
+// 	width: 100%;
+// 	@include background(linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .8) 100vh));
+// }
+
+// body.index .container::before {
+// 	@include background(linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .0) $index-header-height, rgba($black, .8) $index-header-height*2));
+// }
+
+// ----- hero 滑鼠觸發區 ----- //
+
+body {
+
+	#hero-trigger {
+		display: none;
+		cursor: pointer;
+
+		@include respond-to($tablet-min-width) {
+			display: block;
+			position: fixed;
+			z-index: 3;
+			width: 50%;
+			width: 50vw;
+			height: 50px;
+			right: 0;
+		}
+	}
+}
+
+body.non-touch {
+
+	#hero-trigger ~ .container {
+		@include transition-property(opacity);
+		@include transition-delay(.8s);
+		@include transition-duration(1.4s);
+	}
+
+	#hero-trigger:hover ~ .container {
+		@include opacity(0);
+	}
+
+	#hero-trigger:hover ~ .hero {
+		@include opacity(1);
+		@include filter(grayscale(0%));
+
+		.item {
+			opacity: 1 !important;
+			@include filter(grayscale(0%) !important);
+		}
 	}
 }
 
