@@ -619,10 +619,16 @@ html:lang(jp) nav.main-menu {
 			height: 100%;
 			padding-top: $base-line-height/4;
 
-			.title, .sub-title, .credit {
+			.title, .sub-title, .credit, .link {
 				@include text-shadow(0 0 4px #000, 4px 0 8px rgba(0,0,0, .5), -4px 0 8px rgba(0,0,0, .5));
 				text-align: right;
 				color: darken($white, 12%);
+
+				.text {
+					@include ellipsis;
+					margin: -12px;
+					padding: 12px;
+				}
 			}
 
 			.title {
@@ -638,16 +644,23 @@ html:lang(jp) nav.main-menu {
 			.credit {
 				@extend .sub-title;
 
-				&::before {
+				& .text::before {
 					content: "Photo Credit / ";
 				}
+			}
+
+			.link {
+				@extend .sub-title;
+				@include opacity(0);
+				font-style: italic;
+				text-decoration: underline;
 			}
 
 			@include at-breakpoint($tablet) {
 
 				max-width: $container-maxWidth;
 
-				.title, .sub-title, .credit {
+				.title, .sub-title, .credit, .link {
 					@include span-columns($tablet-columns - 6 omega, $tablet-columns);
 					@include pre(6, $tablet-columns);
 					line-height: 15px;
@@ -657,7 +670,7 @@ html:lang(jp) nav.main-menu {
 
 				max-width: $container-maxWidth;
 
-				.title, .sub-title, .credit {
+				.title, .sub-title, .credit, .link {
 					@include span-columns($desktop-columns - 8 omega, $desktop-columns);
 					@include pre(7, $desktop-columns);
 					@include post(1, $desktop-columns);
@@ -768,6 +781,10 @@ body.non-touch {
 			@include transition-property(opacity, filter, background-position);
 			@include transition-duration(.5s, .5s, .5s);
 			@include transition-delay(0s, 0s, 1.4s);
+
+			.link {
+				@include opacity(.6);
+			}
 		}
 	}
 }
