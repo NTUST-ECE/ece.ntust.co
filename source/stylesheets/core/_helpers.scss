@@ -49,6 +49,12 @@
 //   Functions
 // -------------------------------------
 
+// ----- strip units ----- //
+
+@function strip-units($number) {
+	@return $number / ($number * 0 + 1);
+}
+
 // ----- em ----- //
 
 @function em($target, $context: $base-fontSize) {

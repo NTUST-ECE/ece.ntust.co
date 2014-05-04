@@ -56,6 +56,7 @@ body {
 .container {
 	@include container($total-columns, $tablet, $desktop);
 	@include pie-clearfix;
+	position: relative;
 
 	// ----- Tablet + ----- //
 	@include at-breakpoint($tablet) {
@@ -66,22 +67,11 @@ body {
 
 		footer {
 			position: relative;
-			z-index: 10;
+			z-index: 2;
 
 			> * {
 				position: relative;
 				z-index: 10;
-			}
-
-			&::after {
-				content: " ";
-				position: absolute;
-				z-index: -1;
-				width: $infinite;
-				height: 100%;
-				background-color: #19f;
-				top: 0;
-				left: -9999px;
 			}
 		}
 
@@ -161,7 +151,120 @@ header {
 // -------------------------------------
 
 footer {
+	@extend %inverse;
+	@extend %c-avenir;
+	color: darken($white, 18%);
+	font-size: 90%;
+	text-align: center;
+	padding-bottom: 28px;
 
+	* {
+		color: darken($white, 18%);
+		@include transition-property(color, text-shadow);
+		@include transition-delay(0s, 0s);
+	}
+
+	li:hover {
+		color: $white;
+		text-shadow: 0 0 6px $white;
+	}
+
+	> .footer-nav {
+
+		h1 {
+			display: none;
+		}
+
+		ul {
+			padding: 0;
+			margin: 0;
+			text-align: center;
+		}
+
+		li {
+			display: inline-block;
+
+			a > * {
+				display: none;
+			}
+
+			a > small {
+				display: inline;
+				font-size: 100%;
+			}
+		}
+	}
+
+	> article.about, > article.about * {
+		@extend %c-avenir;
+		color: darken($white, 45%);
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 16px !important;
+		padding: 0;
+		margin: 0;
+	}
+
+	> .fb-likebox {
+		@include opacity(.6);
+		display: none;
+	}
+
+	@include at-breakpoint($tablet) {
+
+		> *, > .footer-nav {
+			@include span-columns($tablet-columns);
+		}
+
+		> .footer-nav {
+			padding: 28px 0 24px;
+
+			li {
+
+				&::before {
+					content: " ";
+					font-weight: 300;
+					width: 15px;
+					margin: 0 8px;
+					height: 0.34em;
+					display: inline-block;
+					border-top: 1px solid darken($white, 60%);
+					@include transition-property(border);
+					@include transition-delay(0.5s);
+					@include transition-duration(0.2s);
+				}
+
+				&:first-child::before {
+					content: "";
+					display: none;
+				}
+
+				&:hover::before, &:hover + li::before {
+					border-top: 1px solid darken($white, 8%);
+				}
+			}
+		}
+	}
+
+	@include at-breakpoint($desktop) {
+
+		> *, > .footer-nav {
+			@include span-columns($desktop-columns);
+		}
+	}
+
+	// ----- Full Background ----- //
+	&::before {
+		content: " ";
+		position: absolute;
+		z-index: -1;
+		width: $infinite;
+		height: 100%;
+		background-color: $black;
+		top: 0;
+		left: - $infinite/2;
+		@include box-shadow($content-shadow);
+	}
 }
 
 // -------------------------------------
@@ -234,6 +337,10 @@ html:lang(jp) nav.main-menu {
 				position: absolute;
 				top: 0;
 				left: 0;
+			}
+
+			&.cross-domin::before {
+				background-color: $green;
 			}
 
 			&:hover {
@@ -356,6 +463,10 @@ html:lang(jp) nav.main-menu {
 
 .content {
 
+	h1 {
+		border-bottom: 1px solid rgba(0,0,0, .18);
+	}
+
 	// ----- Tablet + ----- //
 	@include respond-to($tablet-min-width) {
 
@@ -363,11 +474,11 @@ html:lang(jp) nav.main-menu {
 		overflow: visible;
 		background-color: $content-bgc;
 		margin-top: $base-line-height/2;
-		padding-top: $base-line-height/2;
+		padding-top: strip-units($header-height) % strip-units($base-line-height) + $base-line-height/2;
 		z-index: 5;
 
 		&::before {
-			@include box-shadow(0 0 18px rgba($black, .7));
+			@include box-shadow($content-shadow);
 			content: " ";
 			position: absolute;
 			background-color: $content-bgc;
@@ -391,7 +502,7 @@ html:lang(jp) nav.main-menu {
 		overflow: visible;
 		background-color: transparent;
 		margin-top: 0;
-		padding-top: $base-line-height;
+		padding-top: $base-line-height*2 - (strip-units($header-height) % strip-units($base-line-height));
 		z-index: 5;
 
 		&::before {
@@ -464,6 +575,11 @@ html:lang(jp) nav.main-menu {
 			margin-right: - space(1, 8);
 			padding-right: 48px;
 		}
+
+		.pull-left.not-raised {
+			@include span-columns(4, 8);
+			margin-left: 0;
+		}
 	}
 
 	// ----- XL Desktop + ----- //
@@ -486,7 +602,7 @@ html:lang(jp) nav.main-menu {
 	.item {
 		@include transition-property(opacity, filter, background-position);
 		@include transition-duration(.5s, .5s, .5s);
-		@include transition-delay(0s, 0s, 1.4s);
+		@include transition-delay(0s, 0s, 0s);
 		position: fixed;
 		width: 100%;
 		height: 100%;
@@ -494,6 +610,7 @@ html:lang(jp) nav.main-menu {
 		background-position: 50% 83%;
 		opacity: .28;
 		@include filter(grayscale(36%));
+		@include filter(none !important);
 
 		.inner {
 			@include container($total-columns, $tablet, $desktop);
@@ -570,12 +687,6 @@ html:lang(jp) nav.main-menu {
 	}
 }
 
-body.index .hero, #hero-trigger:hover ~ .hero {
-	.item {
-		background-position: 50% 60%;
-	}
-}
-
 // ----- 背景 ----- //
 
 // .wrapper::before {
@@ -632,13 +743,18 @@ body {
 body.non-touch {
 
 	#hero-trigger ~ .container {
-		@include transition-property(opacity);
-		@include transition-delay(.8s);
-		@include transition-duration(1.4s);
+		@include transition-property(opacity, left);
+		@include transition-delay(0s, 0s);
+		@include transition-duration(1.4s, 1.4s);
+		left: 0;
 	}
 
 	#hero-trigger:hover ~ .container {
 		@include opacity(0);
+		@include transition-property(opacity, left);
+		@include transition-delay(.8s, .8s);
+		@include transition-duration(1.4s, 1.4s);
+		left: -1200px;
 	}
 
 	#hero-trigger:hover ~ .hero {
@@ -647,7 +763,11 @@ body.non-touch {
 
 		.item {
 			opacity: 1 !important;
+			background-position: 50% 60%;
 			@include filter(grayscale(0%) !important);
+			@include transition-property(opacity, filter, background-position);
+			@include transition-duration(.5s, .5s, .5s);
+			@include transition-delay(0s, 0s, 1.4s);
 		}
 	}
 }

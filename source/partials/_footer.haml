@@ -1,3 +1,16 @@
-%ul
-  %li this an that
-  = partial "partials/nav"
+%nav.footer-nav
+  %h1 Footer Navigation
+  %ul
+    = partial "partials/nav"
+    %li
+      %a{:href => 'https://www.facebook.com/GuoLiTaiWanKeJiDaXueDianZiXueShiBanXiXueHui', :target => '_blank'}
+        %small Facebook
+%article.about{'itemscope' => '', 'itemtype' => 'http://data-vocabulary.org/Organization'}
+  %h1{'itemprop' => 'name'} 國立臺灣科技大學電資學士班
+  %p{'itemprop' => 'address', 'itemscope' => '', 'itemtype' => 'http://data-vocabulary.org/Address'}
+    %span{'itemprop' => 'country-name'} 臺灣
+    %span{'itemprop' => 'postal-code'} 106
+    %span{'itemprop' => 'region'} 台北市
+    %span{'itemprop' => 'street-address'} 大安區基隆路四段 43 號 電資館
+  %p{'itemprop' => 'url'} ece.ntust.co
+.fb-likebox= partial "partials/fb-likeBox"

@@ -13,8 +13,13 @@ showHero = (id) ->
   # $('.hero .item').css 'display', 'none'
   $('.hero .item:nth-child(' + id + ')').css? 'opacity', '0'
   $('.hero .item:nth-child(' + id + ')').css? 'display', 'block'
-  $('#hero-trigger').attr 'href', $('.hero .item:nth-child(' + id + ')').attr? 'data-link'
-  $('#hero-trigger').attr 'target', '_blank'
+  link = $('.hero .item:nth-child(' + id + ')').attr? 'data-link'
+  if link != ''
+    $('#hero-trigger').attr 'href', link
+    $('#hero-trigger').attr 'target', '_blank'
+  else
+    $('#hero-trigger').attr 'href', '#'
+    $('#hero-trigger').attr 'target', ''
   setTimeout ->
     $('.hero .item:nth-child(' + id + ')').css? 'opacity', 'auto'
   , 10
@@ -33,10 +38,21 @@ refreshViev = () ->
   nvh = $('.main-menu').height() + 18
   cmh = nvh if cmh < nvh
   $('.content').css 'min-height', cmh
+  # 如果 pull-right 撞上 Nav ...
+  navBottomPosition = $('.main-menu').offset().top + $('.main-menu').height()
+  $('.pull-left').each ->
+    if $(this).offset().top < navBottomPosition + 100
+      $(this).addClass('not-raised')
+    else
+      $(this).removeClass('not-raised')
   # 重新調整基線旋律
   refreshBaseline()
   # 為包著圖片的元素加上 class
   $('.content p:has(img), .content div:has(img)').addClass 'img'
+  # CSS3 Fallbacks (Modernizr feature-detects include 在 modernizr.js)
+  if not Modernizr.cssvwunit
+    1
+  # ...
 
 refreshViev()
 

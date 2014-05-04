@@ -35,6 +35,9 @@
      */
 
     function _setBase (element) {
+
+      if (!element) return;
+
       var height = element.offsetHeight,
           current, old;
 

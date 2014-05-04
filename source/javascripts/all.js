@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
 
 // macho.js
 
-$('p').macho();
+$('.content p').macho();
 
 // justfont
 

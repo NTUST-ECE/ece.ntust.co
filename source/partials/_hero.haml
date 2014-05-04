@@ -1,9 +1,9 @@
 -data.heroes.each do |item|
+  -data_link = item.link
+  -data_link = '#' if !data_link
   .item{:style => 'display: none; background-image: url(\'/' + images_dir.to_s + '/' + item.img + '\')', 'data-link' => item.link}
     .inner
       .title= item.title
       .sub-title= item.subTitle
       -if item.credit
         .credit= item.credit
-
-
