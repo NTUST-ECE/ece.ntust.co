@@ -25,9 +25,18 @@ middleman article TITLE
 
 ## Style Guides
 
-- See `.editorconfig`.
+### General
+
+- 若只是單純更新內容 (沒動到 core layout, css, js)，commit message 請加上 `Update#  ` 的 prefix
+- See & use `.editorconfig`.
+
+### HTML、CSS、JS 架構
+
 - build 出單一 CSS、單一 JS 為原則 (使用 [assets pipeline](http://middlemanapp.com/basics/asset-pipeline/))
 - SCSS 依照 [MVCSS](http://mvcss.github.io/) 的架構
+
+### Content、Assests
+
 - html 內文中的 `<img>` 必須用 `<div></div>` 或 `<p></p>` 包裹，不可直接插入。圖說可放在包裹元素中、接在 `<img>` 後。例如：(slim)
 
   ```slim
@@ -69,6 +78,8 @@ middleman article TITLE
 [5]: http://slim-lang.com
 
 - - -
+
+註：
 
 \*1: [http://www.ign.com/videos/2011/03/25/portal-glados-quote-video-7](http://www.ign.com/videos/2011/03/25/portal-glados-quote-video-7)  
 \*2: Mac 上的安裝法: [https://gist.github.com/Neson/11347265](https://gist.github.com/Neson/11347265)  
