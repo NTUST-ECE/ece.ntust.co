@@ -35,7 +35,7 @@ refreshBaseline = () ->
 refreshViev = () ->
   # 螢幕太大不要露內褲
   cmh = $(window).height() - $('header').height() - $('footer').height()
-  nvh = $('.main-menu').height() + 18
+  nvh = $('.main-menu').height() + 72
   cmh = nvh if cmh < nvh
   $('.content').css 'min-height', cmh
   # 如果 pull-right 撞上 Nav ...
