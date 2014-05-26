@@ -124,7 +124,15 @@ header {
 	hgroup {
 		position: relative;
 		z-index: 1000px;
-		@include replace-text-with-dimensions('background.png', '', '', '');
+
+		h1 {
+			@include replace-text('logo/site-logo.png');
+			background-size: 100%;
+			width: 100px;
+			height: 100px;
+
+			@include box-shadow(0 0 12px rgba(0,0,0, 1));
+		}
 	}
 
 }
@@ -156,7 +164,7 @@ footer {
 	color: darken($white, 18%);
 	font-size: 90%;
 	text-align: center;
-	padding-bottom: 28px;
+	padding-bottom: 10px;
 
 	* {
 		color: darken($white, 18%);
@@ -203,10 +211,14 @@ footer {
 		line-height: 16px !important;
 		padding: 0;
 		margin: 0;
+
+		a:hover {
+			color: darken($white, 10%);
+		}
 	}
 
-	> .fb-likebox {
-		@include opacity(.6);
+	> .fb-likebox, > .copyright, > .links {
+		@include opacity(.23);
 		display: none;
 	}
 
@@ -251,6 +263,51 @@ footer {
 		> *, > .footer-nav {
 			@include span-columns($desktop-columns);
 		}
+
+		// > .copyright, > .fb-likebox, > .links {
+		// 	display: block;
+		// 	text-align: center;
+		// 	border-top: 1px solid $white;
+		// 	border-bottom: 1px solid $white;
+		// }
+
+		> .copyright {
+			display: block;
+			@include span-columns(3 omega);
+			@include pre(9);
+			text-align: right;
+
+			font-size: 12px;
+
+			p {
+				margin: 4px;
+				line-height: 14px;
+			}
+		}
+
+		// > .copyright {
+		// 	@include span-columns(3);
+		// 	@include opacity(.5);
+		// 	font-size: 12px;
+
+		// 	p {
+		// 		margin: 4px;
+		// 		line-height: 12px;
+		// 	}
+		// }
+
+		// > .fb-likebox {
+		// 	@include span-columns(4);
+		// 	@include pre(1);
+		// 	@include opacity(.5);
+		// }
+
+		// > .links {
+		// 	@include span-columns(3 omega);
+		// 	@include pre(1);
+		// 	@include opacity(.5);
+		// 	font-size: 36px;
+		// }
 	}
 
 	// ----- Full Background ----- //
@@ -409,6 +466,7 @@ html:lang(jp) nav.main-menu {
 				@include box-shadow(-1px 0 4px rgba(0,0,0, .2));
 
 				a {
+					color: $black;
 					background-color: $base-bgc;
 					border-right: none;
 					left: 0;
@@ -417,16 +475,16 @@ html:lang(jp) nav.main-menu {
 				}
 			}
 
-			.a {
-				display: block;
-				position: absolute;
-				top: 0;
-				right: 0;
-				z-index: 2;
-				height: 100%;
-				width: 100%;
-				overflow: visible;
-			}
+			// .a {
+			// 	display: block;
+			// 	position: absolute;
+			// 	top: 0;
+			// 	right: 0;
+			// 	z-index: 2;
+			// 	height: 100%;
+			// 	width: 100%;
+			// 	overflow: visible;
+			// }
 		}
 	}
 }
@@ -488,6 +546,8 @@ html:lang(jp) nav.main-menu {
 			content: " ";
 			position: absolute;
 			background-color: $content-bgc;
+			@include background-image(linear-gradient(top, lighten($green, 50%) 0%, lighten($green, 50%) 4px, $green 4px, $green 10px, rgba($content-bgc, 0) 10px));
+
 			height: 100%;
 			width: 106.2%;
 			top: 0;
