@@ -166,6 +166,18 @@ p.img {
 	line-height: 36px;
 }
 
+.icon {
+	font-family: "icon-font" !important;
+	display: inline-block !important;
+	width: 1em !important;
+	visibility: collapse !important;
+
+	&::first-letter {
+		font-family: "icon-font" !important;
+		visibility: visible !important;
+	}
+}
+
 // -------------------------------------
 //   漢字標準格式 hack
 //   -> 印刷品般的漢字網頁排版框架
