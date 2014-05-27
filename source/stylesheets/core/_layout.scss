@@ -126,18 +126,38 @@ header {
 		z-index: 1000px;
 
 		h1 {
-			@include replace-text('logo/site-logo.png');
+			@include replace-text('logo/header-logo.png');
+			@include transition-property(height);
+			@include transition-delay(.1s);
+			@include transition-duration(.3s);
 			background-size: 100%;
-			width: 100px;
-			height: 100px;
+			background-position: 50% 100%;
+			display: block;
+			position: relative;
+			width: 160px;
+			height: 170px;
 
-			@include box-shadow(0 0 12px rgba(0,0,0, 1));
+			&:hover {
+				height: 192px;
+			}
+
+			a {
+				display: block;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+			}
+		}
+
+		h2 {
+			display: none;
 		}
 	}
-
 }
 
-// ----- 桌面版首頁專用 ----- //
+// ----- 桌面版首頁專用 (撐高 Header 來顯示 Hero) ----- //
 @include respond-to($tablet-min-width) {
 
 	header {
@@ -490,7 +510,6 @@ html:lang(jp) nav.main-menu {
 }
 
 // ----- 萬惡的 Windows ----- //
-
 .windows nav.main-menu, html:lang(zh) nav.main-menu, html:lang(jp) nav.main-menu {
 
 	a, li {
@@ -826,6 +845,15 @@ body.non-touch {
 		@include transition-delay(0s, 0s);
 		@include transition-duration(1.4s, 1.4s);
 		left: 0;
+
+		header {
+			@include transition-property(opacity, top, left);
+			@include transition-delay(0s, 0s, 0s);
+			@include transition-duration(1.4s, 1.4s, 1.4s);
+			position: relative;
+			top: 0;
+			left: 0;
+		}
 	}
 
 	#hero-trigger:hover ~ .container {
@@ -834,6 +862,14 @@ body.non-touch {
 		@include transition-delay(.8s, .8s);
 		@include transition-duration(1.4s, 1.4s);
 		left: -1200px;
+
+		header {
+			@include transition-property(opacity, top, left);
+			@include transition-delay(.8s, .8s, .8s);
+			@include transition-duration(1.4s, 1.4s, 1.4s);
+			top: -400px;
+			left: 1200px;
+		}
 	}
 
 	#hero-trigger:hover ~ .hero {

@@ -10,8 +10,11 @@
 # Ignore the build directory
 /build
 
-# Ignore Bower Components
+# Ignore Bower components
 /source/bower_components
+
+# Ignore source psd, ai... files
+/material_source/*
 
 # Ignore cache
 /.sass-cache
