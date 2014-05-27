@@ -146,7 +146,7 @@ code, .code, .content-box, %content-box {
 	* { color: $white; }
 }
 
-.lazyload { // 應該移動到 moudle?
+.lazyload { // 應該移動到?
 	display: none;
 }
 
@@ -211,13 +211,10 @@ em:lang(zh), em:lang(ja) {
 	}
 
 	// ----- 首行清單不要縮那麼多 ----- //
-	h1 + ol, h1 + ul,
-	h2 + ol, h2 + ul,
-	h3 + ol, h3 + ul,
-	h4 + ol, h4 + ul,
-	h5 + ol, h5 + ul,
-	h6 + ol, h6 + ul {
-		padding-left: 1em;
+	#{headings()} {
+		+ ol, + ul {
+			padding-left: 1em;
+		}
 	}
 }
 

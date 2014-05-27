@@ -1,0 +1,58 @@
+// -------------------------------------
+//   Header
+//   -> 頭
+// -------------------------------------
+
+header {
+
+	hgroup {
+		position: relative;
+		z-index: 1000px;
+
+		h1 {
+			@include replace-text('logo/header-logo.png');
+			@include transition-property(height);
+			@include transition-delay(.1s);
+			@include transition-duration(.3s);
+			background-size: 100%;
+			background-position: 50% 100%;
+			display: block;
+			position: relative;
+			width: 160px;
+			height: 170px;
+
+			&:hover {
+				height: 192px;
+			}
+
+			a {
+				display: block;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+			}
+		}
+
+		h2 {
+			display: none;
+		}
+	}
+}
+
+// ----- 桌面版首頁專用 (撐高 Header 來顯示 Hero) ----- //
+@include respond-to($tablet-min-width) {
+
+	header {
+		height: $header-height;
+	}
+
+	body.index header {
+		height: $index-header-height;
+	}
+
+	body.ios.index header {
+		height: $index-header-height-fallback;
+	}
+}

@@ -1,0 +1,219 @@
+// -------------------------------------
+//   Hero
+//   -> 英雄
+// -------------------------------------
+
+.hero {
+	@include transition-property(opacity);
+	@include transition-duration(.5s);
+	display: none;
+	position: fixed;
+	background-image: url('/images/backgrounds/navy.png');
+	@include background-image-2x('/images/backgrounds/navy@2X.png', 600px, 385px);
+
+	.item {
+		@include transition-property(opacity, filter, background-position);
+		@include transition-duration(.5s, .5s, .5s);
+		@include transition-delay(0s, 0s, 0s);
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: 50% 83%;
+		opacity: .28;
+		@include filter(grayscale(36%));
+		@include filter(none !important);
+
+		.inner {
+			@include container($total-columns, $tablet, $desktop);
+			@extend %c-light;
+			position: relative;
+			height: 100%;
+			padding-top: $base-line-height/4;
+
+			.title, .sub-title, .credit, .link {
+				@include text-shadow(0 0 4px #000, 4px 0 8px rgba(0,0,0, .5), -4px 0 8px rgba(0,0,0, .5));
+				text-align: right;
+				color: darken($white, 12%);
+
+				.text {
+					@include ellipsis;
+					margin: -12px;
+					padding: 12px;
+				}
+			}
+
+			.title {
+				@include opacity(.8);
+				font-size: 14px;
+			}
+
+			.sub-title {
+				@include opacity(.6);
+				font-size: 10px;
+			}
+
+			.credit {
+				@extend .sub-title;
+
+				& .text::before {
+					content: "Photo Credit / ";
+				}
+			}
+
+			.link {
+				@extend .sub-title;
+				@include opacity(0);
+				font-style: italic;
+				text-decoration: underline;
+			}
+
+			@include at-breakpoint($tablet) {
+
+				max-width: $container-maxWidth;
+
+				.title, .sub-title, .credit, .link {
+					@include span-columns($tablet-columns - 6 omega, $tablet-columns);
+					@include pre(6, $tablet-columns);
+					line-height: 15px;
+				}
+			}
+			@include at-breakpoint($desktop) {
+
+				max-width: $container-maxWidth;
+
+				.title, .sub-title, .credit, .link {
+					@include span-columns($desktop-columns - 8 omega, $desktop-columns);
+					@include pre(7, $desktop-columns);
+					@include post(1, $desktop-columns);
+					line-height: 15px;
+				}
+			}
+		}
+	}
+
+	@include respond-to($tablet-min-width) {
+		display: block;
+		z-index: -100;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: #333;
+	}
+
+	// ----- XXL Desktop + ----- //
+	@include respond-to($very-large-desktop-min-width) {
+
+		.item .inner {
+			margin-left: 14.4%;
+		}
+	}
+}
+
+// ----- 背景 ----- //
+
+// .wrapper::before {
+// 	content: " ";
+// 	position: absolute;
+// 	left: 0;
+// 	top: 0;
+// 	height: 100%;
+// 	width: 100%;
+// 	background-image: linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .0) 100%), linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .8) 100%), linear-gradient(to bottom, rgba($black, .8) 0%, rgba($black, .8) 100%);
+// 	background-position: 50% 0, 50% $header-height/2, 50% $header-height*10;
+// 	background-size: 100% $header-height/2, 100% $header-height/2*19, 100% 100%;
+// 	background-repeat: no-repeat;
+// }
+
+// .wrapper {
+// 	@include background(linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .8) 100vh));
+// }
+
+// .container::before {
+// 	content: " ";
+// 	position: absolute;
+// 	left: 0;
+// 	top: 0;
+// 	height: 100%;
+// 	width: 100%;
+// 	@include background(linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .8) 100vh));
+// }
+
+// body.index .container::before {
+// 	@include background(linear-gradient(to bottom, rgba($black, .0) 0%, rgba($black, .0) $index-header-height, rgba($black, .8) $index-header-height*2));
+// }
+
+// ----- hero 滑鼠觸發區 ----- //
+
+body {
+
+	#hero-trigger {
+		display: none;
+		cursor: pointer;
+
+		@include respond-to($tablet-min-width) {
+			display: block;
+			position: fixed;
+			z-index: 3;
+			width: 50%;
+			width: 50vw;
+			height: 50px;
+			right: 0;
+		}
+	}
+}
+
+body.non-touch {
+
+	#hero-trigger ~ .container {
+		@include transition-property(opacity, left);
+		@include transition-delay(0s, 0s);
+		@include transition-duration(1.4s, 1.4s);
+		left: 0;
+
+		header {
+			@include transition-property(opacity, top, left);
+			@include transition-delay(0s, 0s, 0s);
+			@include transition-duration(1.4s, 1.4s, 1.4s);
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+	}
+
+	#hero-trigger:hover ~ .container {
+		@include opacity(0);
+		@include transition-property(opacity, left);
+		@include transition-delay(.8s, .8s);
+		@include transition-duration(1.4s, 1.4s);
+		left: -1200px;
+
+		header {
+			@include transition-property(opacity, top, left);
+			@include transition-delay(.8s, .8s, .8s);
+			@include transition-duration(1.4s, 1.4s, 1.4s);
+			top: -400px;
+			left: 1200px;
+		}
+	}
+
+	#hero-trigger:hover ~ .hero {
+		@include opacity(1);
+		@include filter(grayscale(0%));
+
+		.item {
+			opacity: 1 !important;
+			background-position: 50% 60%;
+			@include filter(grayscale(0%) !important);
+			@include transition-property(opacity, filter, background-position);
+			@include transition-duration(.5s, .5s, .5s);
+			@include transition-delay(0s, 0s, 1.4s);
+
+			.link {
+				@include opacity(.6);
+			}
+		}
+	}
+}

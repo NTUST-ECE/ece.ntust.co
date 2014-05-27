@@ -1,0 +1,131 @@
+// -------------------------------------
+//   Content
+//   -> 內文排版
+// -------------------------------------
+
+.content {
+
+	h1 {
+		border-bottom: 1px solid rgba(0,0,0, .18);
+	}
+
+	// ----- Tablet + ----- //
+	@include respond-to($tablet-min-width) {
+
+		position: relative;
+		overflow: visible;
+		background-color: $content-bgc;
+		margin-top: $base-line-height/2;
+		padding-top: strip-units($header-height) % strip-units($base-line-height) + $base-line-height/2;
+		z-index: 5;
+
+		&::before {
+			@include box-shadow($content-shadow);
+			content: " ";
+			position: absolute;
+			background-color: $content-bgc;
+			@include background-image(linear-gradient(top, lighten($green, 50%) 0%, lighten($green, 50%) 4px, $green 4px, $green 10px, rgba($content-bgc, 0) 10px));
+
+			height: 100%;
+			width: 106.2%;
+			top: 0;
+			right: - $grid-padding;
+			z-index: 0;
+		}
+
+		> * {
+			position: relative;
+			z-index: 10;
+		}
+	}
+
+	// ----- Desktop + ----- //
+	@include respond-to($desktop-min-width) {
+
+		position: relative;
+		overflow: visible;
+		background-color: transparent;
+		margin-top: 0;
+		padding-top: $base-line-height*2 - (strip-units($header-height) % strip-units($base-line-height));
+		z-index: 5;
+
+		&::before {
+			content: " ";
+			position: absolute;
+			background-color: $content-bgc;
+			height: 100%;
+			width: $infinite;
+			width: 100vw;
+			top: 0;
+			right: 0;
+			z-index: 0;
+			@include experimental(clip-path, polygon(0% 0%, $infinite - 80 0%, 100% 50px, 100% 100%, 0% 100%, 0% 0%), -moz, -webkit, -o, -ms, -khtml, official);
+			@include transition-property(clip-path);
+			@include transition-duration(.8s);
+		}
+
+		> * {
+			position: relative;
+			z-index: 10;
+		}
+
+		.pull-left {
+			text-align: right;
+		}
+
+		.pull-left.box {
+			position: relative;
+			z-index: 11;
+			@include span-columns(5, 8);
+			margin-left: - space(1, 8);
+			padding-bottom: 0;
+
+			img { margin-bottom: 0; }
+		}
+
+		.pull-right.box {
+			position: relative;
+			z-index: 11;
+			@include span-columns(5, 8);
+			@include omega;
+			margin-left: gutter(8);
+			margin-right: - space(1, 8);
+			padding-right: 48px;
+			padding-bottom: 0;
+
+			img { margin-bottom: 0; }
+		}
+
+		.pull-left.text, .pull-right.text {
+			@include rhythm-to(0, 0.5, 0.5, 0, $base-font-size*2);
+			color: $red;
+			@include selection($warm-white, $red);
+			padding-bottom: 0;
+		}
+
+		.pull-left.text {
+			position: relative;
+			z-index: 11;
+			@include span-columns(4, 8);
+			margin-left: - space(1, 8);
+		}
+
+		.pull-right.text {
+			position: relative;
+			z-index: 11;
+			@include span-columns(4, 8);
+			@include omega;
+			margin-left: gutter(8);
+			margin-right: - space(1, 8);
+			padding-right: 48px;
+		}
+
+		.pull-left.not-raised {
+			@include span-columns(4, 8);
+			margin-left: 0;
+		}
+	}
+
+	// ----- XL Desktop + ----- //
+	@include respond-to($large-desktop-min-width) {}
+}
