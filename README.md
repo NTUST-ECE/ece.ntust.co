@@ -17,11 +17,26 @@ middleman build
 
 若單純更新文本內容，可將 `activate :imageoptim` 關掉節省時間。
 
-## New Post
+## New Blog Post
+
+### for Event
 
 ```
-middleman article TITLE
+middleman article --blog=events --date=YEAR-MONTH-DAT TITLE
 ```
+
+* * *
+
+注意「TITLE」僅用英文較理想。可以用 ruby-pinyin 來將中文轉爲英文拼音。例：
+
+```
+$ gem install ruby-pinyin
+$ irb
+> require 'ruby-pinyin'
+> PinYin.permlink('您好，歡迎光臨：NTUST ECE')
+ => "nin-hao-huan-ying-guang-lin-NTUST-ECE"
+```
+
 
 ## Style Guides
 
@@ -53,10 +68,15 @@ middleman article TITLE
   ll_img :src [,:alt_text] # 適用於 asset image，路徑表示法與 image_tag 同，不用提供寬&高
   ll_img :src, :width, :height, [,:alt_text] # 適用於外連圖片，必須提供寬&高
   ```
-  e.g. (Slim)
+  e.g. (slim/haml)
   
   ```
   .pull-left.box= ll_img "http://i.imgur.com/RQ1dZ00.png", "2107px", "1277px", "2013 系烤"
+  ```
+  或是 (erb/markdown)
+  
+  ```
+  <p><%= ll_img "http://i.imgur.com/RQ1dZ00.png", "2107px", "1277px", "2013 系烤" %></p>
   ```
 
 ### css z-index 深度表

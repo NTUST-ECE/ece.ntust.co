@@ -1,0 +1,6 @@
+= wrap_layout :page_layout do
+  .breadcrumb
+    = link_to "&lsaquo; 活動/Events", "/events/"
+    &rarr;
+  %h1= current_page.data.title
+  = yield
