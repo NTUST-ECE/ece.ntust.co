@@ -21,10 +21,19 @@ $debug: true;
 @import "compass/layout";
 
 // -------------------------------------
+//   Settings
+// -------------------------------------
+
+@import "core/settings";
+
+// -------------------------------------
 //   Foundation & Susy
 // -------------------------------------
 
-@import "foundation";
+// @import "foundation";
+@import "foundation/functions";
+@import "foundation/components/global";
+@import "foundation/components/type";
 @import "susy";
 
 // -------------------------------------
@@ -34,10 +43,6 @@ $debug: true;
 // ----- Reset ----- //
 
 // This is done by normalize.css included in all.css
-
-// ----- Settings ----- //
-
-@import "core/settings";
 
 // ----- Helpers ----- //
 
@@ -60,6 +65,7 @@ $debug: true;
 // -------------------------------------
 
 @import "modules/*";
+@import "modules/breadcrumb";
 
 // -------------------------------------
 //   Pages

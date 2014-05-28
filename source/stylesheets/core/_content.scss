@@ -30,6 +30,12 @@ p, blockquote, code, dl, ol, ul {
 	@include transition(opacity .3s);
 }
 
+#{headings()} {
+	font-weight: normal;
+	font-style: normal;
+	color: #222;
+}
+
 #{headings(1,2)} {
 	overflow: hidden;
 	// font-weight: 700;

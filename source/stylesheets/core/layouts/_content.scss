@@ -20,11 +20,11 @@
 		z-index: 5;
 
 		&::before {
-			@include box-shadow($content-shadow);
+			@include box-shadow($content-shadow, 0 10px 0 $black inset);
 			content: " ";
 			position: absolute;
 			background-color: $content-bgc;
-			@include background-image(linear-gradient(top, lighten($green, 50%) 0%, lighten($green, 50%) 4px, $green 4px, $green 10px, rgba($content-bgc, 0) 10px));
+			// @include background-image(linear-gradient(top, lighten($green, 50%) 0%, lighten($green, 50%) 4px, $green 4px, $green 10px, rgba($content-bgc, 0) 10px));
 
 			height: 100%;
 			width: 106.2%;
@@ -59,8 +59,8 @@
 			top: 0;
 			right: 0;
 			z-index: 0;
-			@include experimental(clip-path, polygon(0% 0%, $infinite - 80 0%, 100% 50px, 100% 100%, 0% 100%, 0% 0%), -moz, -webkit, -o, -ms, -khtml, official);
-			@include transition-property(clip-path);
+			// @include experimental(clip-path, polygon(0% 0%, $infinite - 80 0%, 100% 50px, 100% 100%, 0% 100%, 0% 0%), -moz, -webkit, -o, -ms, -khtml, official);
+			// @include transition-property(clip-path);
 			@include transition-duration(.8s);
 		}
 

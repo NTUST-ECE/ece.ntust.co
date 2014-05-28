@@ -33,16 +33,17 @@ $warm-white: #f9f3ed;
 $red: #bf280d;
 $green: #333;
 $blue: #0e83c2;
+$orange: #d74c11;
 
 $base-color: $black;
 $base-link-color: $blue;
+$anchor-font-color: $blue;
 $base-bgc: lighten($warm-white, 4%);
 $base-background: $base-bgc;
 $content-bgc: $base-background;
 
 $nav-active-color: $red;
 
-$orange: #d74c11;
 $grid-background-column-color: rgba(darken($orange, 8%), .2);
 $grid-background-baseline-color: rgba($warm-black, .3);
 
