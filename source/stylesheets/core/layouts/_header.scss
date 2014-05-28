@@ -10,16 +10,26 @@ header {
 		z-index: 1000px;
 
 		h1 {
-			@include replace-text('logo/header-logo.png');
+			@include replace-text('logo/ECE-invert.png');
 			@include transition-property(height);
 			@include transition-delay(.1s);
 			@include transition-duration(.3s);
-			background-size: 100%;
-			background-position: 50% 100%;
+			background-color: $black;
+			background-size: 72%;
 			display: block;
 			position: relative;
-			width: 160px;
-			height: 170px;
+			width: 80px;
+			height: 80px;
+
+			// ----- Tablet + ----- //
+			@include respond-to($tablet-min-width) {
+				@include replace-text('logo/header-logo.png');
+				background-color: none;
+				width: 160px;
+				height: 170px;
+				background-size: 100%;
+				background-position: 50% 100%;
+			}
 
 			&:hover {
 				height: 192px;
