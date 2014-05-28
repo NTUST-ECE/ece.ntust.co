@@ -46,6 +46,11 @@ footer {
 				font-size: 100%;
 			}
 		}
+
+		.cross-domin {
+			display: none;
+			@include respond-to($desktop-min-width) { display: inline-block; }
+		}
 	}
 
 	> article.about, > article.about * {

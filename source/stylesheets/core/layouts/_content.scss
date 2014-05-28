@@ -20,7 +20,7 @@
 		z-index: 5;
 
 		&::before {
-			@include box-shadow($content-shadow, 0 10px 0 $black inset);
+			@include box-shadow($content-shadow, 0 10px 0 lighten($black, 20%) inset);
 			content: " ";
 			position: absolute;
 			background-color: $content-bgc;

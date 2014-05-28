@@ -1,0 +1,91 @@
+// *************************************
+//
+//   Breadcrumb
+//   -> 麵包屑導航
+//
+// *************************************
+
+.breadcrumb {
+	display: block;
+	margin: 0;
+	margin-left: -4px;
+	margin-bottom: 2px !important;
+
+	hanla {
+		display: none !important;
+	}
+
+	&::after {
+		content: " →";
+		padding: 5px 0;
+		margin-left: -4px;
+	}
+}
+
+.breadcrumb, .breadcrumb *, .breadcrumb::after {
+	font-size: rem(12px);
+	line-height: rem(12px);
+	color: rgba($black, .8);
+
+	a {
+		padding: 5px 8px 5px 4px;
+	}
+
+	a::before {
+		content: "‹ ";
+		@include opacity(.5);
+		@include transition-property(opacity);
+		@include transition-duration(.3s);
+	}
+
+	a:hover {
+		color: $black;
+
+		&::before {
+			@include opacity(1);
+		}
+	}
+}
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+.breadcrumb--inversed {
+	margin-left: 0;
+
+	a {
+		background-color: $black;
+		color: $warm-white;
+	}
+
+	a:hover {
+		color: $white;
+	}
+
+	&::after {
+		content: " →";
+		padding: 5px 4px;
+		margin-left: 0;
+	}
+}
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// .is-module-state
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+// .has-module
+
+// -------------------------------------
+//   Submodules
+// -------------------------------------
+
+// ----- Submodule ----- //
+
+// .module-submodule

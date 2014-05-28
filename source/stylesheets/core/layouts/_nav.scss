@@ -94,6 +94,51 @@ html:lang(jp) nav.main-menu {
 		}
 	}
 
+	// ----- Only on Tablet ----- //
+	@media (max-width: $desktop-min-width) and (min-width: $tablet-min-width) {
+		z-index: 5;
+
+		li, li * {
+			@include text-shadow(0 0 12px rgba($black, 1));
+			color: darken($white, 20%);
+		}
+
+		li.active, li.active * {
+			color: darken($white, 10%);
+		}
+
+		li {
+			position: relative;
+			overflow: visible;
+		}
+
+		li::after, li:not(.cross-domin) + .cross-domin::before {
+			content: " ";
+			display: block;
+			position: absolute;
+			z-index: 2;
+			top: -6px;
+			left: 0;
+			width: 200%;
+			height: 1px;
+			// background-color: $white;
+			@include background-image(linear-gradient(left, rgba($white, 0) 0%, rgba($white, .5) 100%));
+		}
+
+		li:not(.cross-domin) + .cross-domin {
+			margin-top: 16px;
+
+			&::before {
+				margin-top: -5px;
+			}
+		}
+
+		li:first-of-type::after {
+			content: none;
+			display: none;
+		}
+	}
+
 	// ----- Desktop + ----- //
 	@include respond-to($desktop-min-width) {
 
