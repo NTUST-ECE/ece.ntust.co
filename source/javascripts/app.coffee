@@ -56,7 +56,8 @@ refreshViev = () ->
   # 動態 css
   jsCssNode = document.getElementById('js-css')
   jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
-  css = "nav.main-menu.show { max-height: " + ($('.main-menu ul').height()+30) + "px !important; }"
+  css = "nav.main-menu.show { max-height: " + ($('.main-menu ul').height()+30) + "px !important; } "
+  css += "nav.main-menu.show > h1 { top: " + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px !important; } "
   head = document.head or document.getElementsByTagName("head")[0]
   style = document.createElement("style")
   style.type = "text/css"

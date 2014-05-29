@@ -18,6 +18,10 @@ html:lang(jp) nav.main-menu {
 		@include ellipsis;
 	}
 
+	.copyright {
+		display: none;
+	}
+
 	// ----- Only on Phone ----- //
 	@media (max-width: $tablet-min-width) {
 		display: inline-block;
@@ -34,13 +38,16 @@ html:lang(jp) nav.main-menu {
 
 		> h1 {
 			@include replace-text('logo/ECE-invert.png');
+			@include transition-property(top);
+			@include transition-duration(.5s);
+			@include transition-delay(.3s);
 			background-color: $black;
 			background-size: 72%;
 			display: block;
 			position: absolute;
 			top: 0;
 			left: 0;
-			z-index: 10;
+			z-index: 12;
 			width: $mobile-logo-height;
 			height: $mobile-logo-height;
 			margin: 0;
@@ -54,9 +61,9 @@ html:lang(jp) nav.main-menu {
 		ul {
 			display: block;
 			position: relative;
-			overflow: hidden;
+			overflow: visible;
 			margin: 12px 16px 12px $mobile-logo-height;
-			padding: 0;
+			padding: 0 0 12px 0;
 
 			li {
 				// @include transition-property(opacity);
@@ -88,16 +95,43 @@ html:lang(jp) nav.main-menu {
 					@include transition-delay(0, 0);
 					@include translateX(20px);
 					position: relative;
+					overflow: hidden;
 					opacity: 0;
 					padding: 0 8px;
 				}
+
+				&:first-of-type a::before {
+					content: " ← ";
+					display: inline-block;
+					position: absolute;
+					left: -24px;
+				}
 			}
+		}
+
+		.copyright {
+			display: block;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			font-size: 12px;
+			line-height: 12px;
+			padding: 5px 6px;
+			color: $white;
+			opacity: 0;
+			@include transition-property(opacity);
+			@include transition-duration(.5s);
+			@include transition-delay(.5s);
 		}
 
 		&.show {
 			@include transition-delay(.5s, 0);
 			max-width: 300px;
 			max-height: 640px;
+
+			h1 {
+				@include transition-delay(0);
+			}
 
 			ul {
 
@@ -110,6 +144,7 @@ html:lang(jp) nav.main-menu {
 					a {
 						@include translateX(0);
 						opacity: 1;
+						overflow: visible;
 					}
 				}
 
@@ -126,6 +161,11 @@ html:lang(jp) nav.main-menu {
 						}
 					}
 				}
+			}
+
+			.copyright {
+				opacity: .4;
+				@include transition-delay(1.2s);
 			}
 		}
 

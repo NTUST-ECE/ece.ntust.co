@@ -14,6 +14,10 @@
       %h1 Main Navigation
       %ul
         = partial "partials/nav"
+      .copyright
+        ©
+        %span= Time.now.year
+        ECE
     %main.content.vertical-rhythm
       -# %h1= current_page.data.title || data.config.siteTitle
       = yield
