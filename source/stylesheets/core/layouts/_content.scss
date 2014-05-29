@@ -61,6 +61,7 @@
 			z-index: 0;
 			// @include experimental(clip-path, polygon(0% 0%, $infinite - 80 0%, 100% 50px, 100% 100%, 0% 100%, 0% 0%), -moz, -webkit, -o, -ms, -khtml, official);
 			// @include transition-property(clip-path);
+			@include transition-property(opacity);
 			@include transition-duration(.8s);
 		}
 
