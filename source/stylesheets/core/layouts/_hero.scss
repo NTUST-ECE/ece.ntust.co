@@ -168,16 +168,18 @@ body {
 body.non-touch {
 
 	#hero-trigger ~ .container {
-		@include transition-property(opacity, left);
+		@include transition-property(opacity, transform);
 		@include transition-delay(0s, 0s);
 		@include transition-duration(1.4s, 1.4s);
+		@include translateX(0);
 		left: 0;
 		right: 0;
 
 		header {
-			@include transition-property(opacity, top, left);
+			@include transition-property(opacity, transform);
 			@include transition-delay(0s, 0s, 0s);
-			@include transition-duration(1.4s, 1.4s, 1.4s);
+			@include transition-duration(1.4s, 1.4s);
+			@include transform(translateX(0) translateY(0));
 			position: relative;
 			top: 0;
 			left: 0;
@@ -187,27 +189,26 @@ body.non-touch {
 
 	#hero-trigger:hover ~ .container {
 		@include opacity(0);
-		@include transition-property(opacity, left);
+		@include transition-property(opacity, transform);
 		@include transition-delay(.8s, .8s);
 		@include transition-duration(1.4s, 1.4s);
-		left: 1200px;
+		@include translateX(1200px);
 
 		header {
-			@include transition-property(opacity, top, left);
+			@include transition-property(opacity, transform);
 			@include transition-delay(.8s, .8s, .8s);
-			@include transition-duration(1.4s, 1.4s, 1.4s);
-			top: -400px;
-			left: -1200px;
+			@include transition-duration(1.4s, 1.4s);
+			@include transform(translateX(-1200px) translateY(-400px));
 		}
 	}
 
 	@include respond-to($desktop-min-width) {
 
 		#hero-trigger:hover ~ .container {
-			left: -1200px;
+			@include translateX(-1200px);
 
 			header {
-				left: 1200px;
+				@include transform(translateX(1200px) translateY(-400px));
 			}
 		}
 	}
