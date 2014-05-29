@@ -37,7 +37,7 @@ $orange: #d74c11;
 
 $base-color: $black;
 $base-link-color: $blue;
-$anchor-font-color: $blue;
+$anchor-font-color: $base-link-color;
 $base-bgc: lighten($warm-white, 4%);
 $base-background: $base-bgc;
 $content-bgc: $base-background;
