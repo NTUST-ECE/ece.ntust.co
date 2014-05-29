@@ -1,6 +1,5 @@
-= wrap_layout :page_layout do
-  .breadcrumb
-    = link_to "&lsaquo; 活動/Events", "/events/"
-    &rarr;
+= wrap_layout :layout do
+  .breadcrumb.breadcrumb--inversed
+    = link_to "活動/Events", "/events/"
   %h1= current_page.data.title
   = yield

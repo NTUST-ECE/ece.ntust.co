@@ -23,8 +23,6 @@ end
 # Page options, layouts, aliases and proxies
 ###
 
-page '*', :layout => :page_layout
-
 # Per-page layout changes:
 #
 # With no layout
@@ -55,25 +53,20 @@ set :slim, :pretty => true
 # Blog
 ###
 
-# page 'events/*', :layout => :page_layout
-page 'events/*', :layout => :event_layout
-
 activate :blog do |blog|
   blog.name = "events"
   blog.prefix = "events"
   blog.permalink = "{year}/{title}.html"
   blog.taglink = "tag/{tag}.html"
-  blog.layout = :event_layout
+  blog.layout = 'event_layout'
 end
-
-# page 'news/*', :layout => :article_layout
 
 activate :blog do |blog|
   blog.name = "news"
   blog.prefix = "news"
   blog.permalink = "{year}/{title}.html"
   blog.taglink = "tag/{tag}.html"
-  blog.layout = :article_layout
+  blog.layout = 'article_layout'
 end
 
 ###
