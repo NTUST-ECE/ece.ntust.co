@@ -53,8 +53,34 @@ refreshViev = () ->
   if not Modernizr.cssvwunit
     1
   # ...
+  # 動態 css
+  jsCssNode = document.getElementById('js-css')
+  jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
+  css = "nav.main-menu.show { max-height: " + ($('.main-menu ul').height()+30) + "px !important; }"
+  head = document.head or document.getElementsByTagName("head")[0]
+  style = document.createElement("style")
+  style.type = "text/css"
+  style.id = "js-css"
+  if style.styleSheet
+    style.styleSheet.cssText = css
+  else
+    style.appendChild document.createTextNode(css)
+  head.appendChild style
 
 refreshViev()
+
+# 按鈕動作
+$('nav > h1').click ->
+  return if $('nav > h1').hasClass('disabled')
+  if $('nav').hasClass('show')
+    $('nav').removeClass('show')
+    $('nav > h1').addClass('disabled')
+  else
+    $('nav').addClass('show')
+    $('nav > h1').addClass('disabled')
+  setTimeout ->
+    $('nav > h1').removeClass('disabled')
+  , 1200
 
 # 針對不同瀏覽器及系統的處理
 if window.chrome

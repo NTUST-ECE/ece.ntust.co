@@ -4,49 +4,88 @@
 // -------------------------------------
 
 header {
+	display: none;
 
-	hgroup {
-		position: relative;
-		z-index: 1000px;
+	// ----- Only on Phone ----- //
+	@media (max-width: $tablet-min-width) {
+		// display: block;
+		position: absolute !important;
+		overflow: hidden;
+		width: $mobile-logo-height + 20;
+		height: $mobile-logo-height;
+		top: 0;
+		left: - $mobile-logo-height !important;
+		opacity: .2;
 
-		h1 {
-			@include replace-text('logo/ECE-invert.png');
-			@include transition-property(height);
-			@include transition-delay(.1s);
-			@include transition-duration(.3s);
-			background-color: $black;
-			background-size: 72%;
+		* {
+			text-indent: - $infinite;
 			display: block;
-			position: relative;
-			width: 80px;
-			height: 80px;
+			position: absolute !important;
+			overflow: hidden;
+			width: $mobile-logo-height + 20;
+			height: $mobile-logo-height;
+			top: 0;
+			left: auto !important;
+			margin: 0;
+			padding: 0;
+		}
 
-			// ----- Tablet + ----- //
-			@include respond-to($tablet-min-width) {
-				@include replace-text('logo/header-logo.png');
-				background-color: none;
-				width: 160px;
-				height: 170px;
-				background-size: 100%;
-				background-position: 50% 100%;
-			}
+		hgroup {
+			padding-top: $mobile-logo-height/8;
+		}
 
-			&:hover {
-				height: 192px;
-			}
-
-			a {
-				display: block;
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				top: 0;
-				left: 0;
-			}
+		h1, h2 {
+			position: relative !important;
+			border-top: 3px solid $black;
+			border-bottom: 3px solid $black;
+			height: $mobile-logo-height/5;
+			// width: $mobile-logo-height + 20 - $mobile-logo-height/2;
+			margin: $mobile-logo-height/5 0;
 		}
 
 		h2 {
-			display: none;
+			margin-top: -3px - $mobile-logo-height/5;
+			border-top: none;
+		}
+	}
+
+	// ----- Tablet + ----- //
+	@include respond-to($tablet-min-width) {
+		display: block;
+
+		hgroup {
+			position: relative;
+			z-index: 1000px;
+
+			h1 {
+				@include replace-text('logo/header-logo.png');
+				@include transition-property(height);
+				@include transition-delay(.1s);
+				@include transition-duration(.3s);
+				background-size: 100%;
+				background-position: 50% 100%;
+				display: block;
+				position: relative;
+				width: 160px;
+				height: 170px;
+
+				&:hover {
+					height: 192px;
+				}
+
+				a {
+					display: block;
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+				}
+			}
+
+			h2 {
+				display: none;
+			}
 		}
 	}
 }
