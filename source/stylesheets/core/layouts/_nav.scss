@@ -105,6 +105,10 @@ html:lang(jp) nav.main-menu {
 					display: inline-block;
 					position: absolute;
 					left: -24px;
+					@include opacity(.4);
+					@include transition-property(transform);
+					@include transition-duration(.5s);
+					@include translateX(-20px);
 				}
 			}
 		}
@@ -146,6 +150,10 @@ html:lang(jp) nav.main-menu {
 						opacity: 1;
 						overflow: visible;
 					}
+
+					&:first-of-type a::before {
+						@include translateX(0);
+					}
 				}
 
 				@for $i from 1 through 100 {
@@ -153,11 +161,11 @@ html:lang(jp) nav.main-menu {
 					li:nth-child(#{$i}){
 
 						&::after {
-							@include transition-delay(($i*$i+$i)/100 + 1 + s, ($i*$i+$i)/100 + 1 + s);
+							@include transition-delay(($i*$i+$i)/100 + .8 + s, ($i*$i+$i)/100 + .8 + s);
 						}
 
-						a {
-							@include transition-delay(($i*$i+$i)/100 + .8 + s, ($i*$i+$i)/100 + .8 + s);
+						a, a::before {
+							@include transition-delay(($i*$i+$i)/100 + .5 + s, ($i*$i+$i)/100 + .5 + s);
 						}
 					}
 				}
@@ -186,8 +194,25 @@ html:lang(jp) nav.main-menu {
 			line-height: $base-line-height * 1.5;
 		}
 
-		@include clearfix;
+		// &:after {
+		// 	content: "台科電資";
+		// 	display: block;
+		// 	position: absolute;
+		// 	bottom: 0;
+		// 	right: - ($mobile-logo-height - 16)*4 - 12;
+		// 	font-size: $mobile-logo-height - 16;
+		// 	line-height: $mobile-logo-height;
+		// }
 	}
+
+	// @media (max-width: 400px) {
+
+	// 	&:after {
+	// 		right: - ($mobile-logo-height - 16)*4 + 20;
+	// 		font-size: $mobile-logo-height - 24;
+	// 		line-height: $mobile-logo-height;
+	// 	}
+	// }
 
 	// ----- Tablet + ----- //
 	@include respond-to($tablet-min-width) {
