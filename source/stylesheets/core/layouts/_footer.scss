@@ -10,6 +10,7 @@ footer {
 	font-size: 90%;
 	text-align: center;
 	padding-bottom: 10px;
+	position: relative;
 
 	* {
 		color: darken($white, 18%);
@@ -23,6 +24,7 @@ footer {
 	}
 
 	> .footer-nav {
+		padding: 12px 0;
 
 		h1 {
 			display: none;
@@ -36,6 +38,10 @@ footer {
 
 		li {
 			display: inline-block;
+
+			a {
+				padding: 8px 12px;
+			}
 
 			a > * {
 				display: none;
@@ -82,6 +88,10 @@ footer {
 			padding: 28px 0 24px;
 
 			li {
+
+				a {
+					padding: 0;
+				}
 
 				&::before {
 					content: " ";
