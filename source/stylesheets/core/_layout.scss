@@ -49,7 +49,7 @@ body {
 }
 
 .wrapper {
-	background-color: $white;
+	// background-color: $white;
 	@include at-breakpoint($tablet) { background-color: transparent; }
 }
 
