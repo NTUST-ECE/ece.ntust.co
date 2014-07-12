@@ -79,17 +79,6 @@ $ irb
   <p><%= ll_img "http://i.imgur.com/RQ1dZ00.png", "2107px", "1277px", "2013 系烤" %></p>
   ```
 
-### css z-index 深度表
-
-#### Desktop
-
-- 100+ 滑鼠觸發區
-- 10 Nav, Contents 等主要內容
-- 2~5 裝飾品、陰影 ...etc.
-- 1 Content 等主要內容的容器
-- 0 主要內容容器的背景
-- -100 Hero
-
 
 [1]: http://middlemanapp.com
 [2]: http://haml.info

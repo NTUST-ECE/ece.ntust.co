@@ -312,7 +312,7 @@ html:lang(jp) nav.main-menu {
 
 	// ----- Only on Tablet ----- //
 	@media (max-width: $desktop-min-width) and (min-width: $tablet-min-width) {
-		z-index: 5;
+		@include z-index(nav);
 
 		li, li * {
 			@include text-shadow(0 0 12px rgba($black, 1));
@@ -332,7 +332,7 @@ html:lang(jp) nav.main-menu {
 			content: " ";
 			display: block;
 			position: absolute;
-			z-index: 2;
+			@include z-index(shadow);
 			top: -6px;
 			left: 0;
 			width: 200%;
@@ -373,7 +373,7 @@ html:lang(jp) nav.main-menu {
 			li {
 				display: block;
 				position: relative;
-				z-index: 100;
+				@include z-index(nav_content);
 			}
 
 			li:not(.cross-domin) + .cross-domin {
@@ -415,7 +415,7 @@ html:lang(jp) nav.main-menu {
 			// 	position: absolute;
 			// 	top: 0;
 			// 	right: 0;
-			// 	z-index: 2;
+			// 	@include z-index(shadow);
 			// 	height: 100%;
 			// 	width: 100%;
 			// 	overflow: visible;

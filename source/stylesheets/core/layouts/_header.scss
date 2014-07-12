@@ -55,7 +55,7 @@ header {
 
 		hgroup {
 			position: relative;
-			z-index: 1000px;
+			@include z-index(header);
 
 			h1 {
 				@include replace-text('logo/header-logo.png');

@@ -94,7 +94,7 @@
 
 	@include respond-to($tablet-min-width) {
 		display: block;
-		z-index: -100;
+		@include z-index(hero);
 		width: 100%;
 		height: 100%;
 		top: 0;
@@ -156,7 +156,7 @@ body {
 		@include respond-to($tablet-min-width) {
 			display: block;
 			position: fixed;
-			z-index: 3;
+			@include z-index(trigger);
 			width: 50%;
 			width: 50vw;
 			height: 50px;

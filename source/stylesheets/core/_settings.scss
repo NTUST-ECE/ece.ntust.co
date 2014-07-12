@@ -24,6 +24,27 @@
 //   Variables
 // -------------------------------------
 
+// ----- Layouts ----- //
+
+// Z-index
+
+$zIndex-elements: hero,
+                  	hero_content,
+                  background,
+                  shadow,
+                  container,
+                  footer,
+                  	footer_content,
+                  main,
+                  	main_content,
+                  	main_special,
+                  nav,
+                  	nav_content,
+                  	nav_logo,
+                  header,
+                  	header_content,
+                  trigger;
+
 // ----- Base Colors ----- //
 
 $black: #333;

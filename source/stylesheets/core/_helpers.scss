@@ -84,6 +84,17 @@
 //   Mixins
 // -------------------------------------
 
+// ----- z-index ----- //
+
+@mixin z-index($element, $elements: $zIndex-elements, $base: 10) {
+	$index: index($elements, $element);
+	@if $index == false {
+		@warn "Using an non-listed element name";
+	} @else {
+		z-index: index($elements, $element) + $base;
+	}
+}
+
 // ----- Respond-to ----- //
 
 @mixin respond-to($val, $query: min-width, $media: screen) {

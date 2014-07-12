@@ -174,7 +174,7 @@ footer {
 	&::before {
 		content: " ";
 		position: absolute;
-		z-index: -1;
+		@include z-index(shadow);
 		width: $infinite;
 		height: 100%;
 		background-color: $black;
