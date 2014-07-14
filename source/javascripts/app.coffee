@@ -37,7 +37,7 @@ refreshViev = () ->
   cmh = $(window).height() - $('header').height() - $('footer').height()
   nvh = $('.main-menu').height() + 72
   cmh = nvh if cmh < nvh
-  $('.content').css 'min-height', cmh
+  $('.main').css 'min-height', cmh
   # 如果 pull-right 撞上 Nav ...
   navBottomPosition = $('.main-menu').offset().top + $('.main-menu').height()
   $('.pull-left').each ->
@@ -45,10 +45,47 @@ refreshViev = () ->
       $(this).addClass('not-raised')
     else
       $(this).removeClass('not-raised')
+  tid = 0
+  # timeline
+  $('.timeline-articles.auto-label').each ->
+    tid++
+    $(this).children('.navigator').remove()
+    $(this).children('.label').remove()
+    $(this).prepend '<div class="navigator"><ul></ul></div>'
+    nav = $(this).children('.navigator').children('ul')
+    dt = 0
+    pdt = 0
+    d = new Date()
+    pd = new Date()
+    $(this).children('.article').each ->
+      pdt = dt
+      dt = $(this).children('.date').attr('datetime') or $(this).children('a').children('.date').attr('datetime')
+      d.setTime(Date.parse(dt))
+      pd.setTime(Date.parse(pdt))
+      if pdt != 0
+        i = d.getFullYear()
+        k = pd.getFullYear()
+        j = d.getMonth()
+        l = 12
+        while i <= k
+          l = pd.getMonth() if i == k
+          while j <= l
+            if j is 1 or j is 7
+              $(this).before '<div id="timeline-' + tid + '-' + i + '-' + j + '" class="label">' + i + '/' + j + '</div>'
+              nav.append '<li><a href="#timeline-' + tid + '-' + i + '-' + j + '">' + i + '/' + j + '</a></li>'
+            j++
+          j = 1
+          i++
+  $('.timeline-articles .label').each ->
+    if $(this).offset().top < navBottomPosition + 100
+      $(this).addClass('not-raised')
+    else
+      $(this).removeClass('not-raised')
   # 重新調整基線旋律
   refreshBaseline()
   # 為包著圖片的元素加上 class
-  $('.content p:has(img), .content div:has(img)').addClass 'img'
+  $('.main p:has(img), .main div:has(img)').each ->
+    $(this).addClass 'img' if $(this).children('img')[0]
   # CSS3 Fallbacks (Modernizr feature-detects include 在 modernizr.js)
   if not Modernizr.cssvwunit
     1
@@ -56,8 +93,8 @@ refreshViev = () ->
   # 動態 css
   jsCssNode = document.getElementById('js-css')
   jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
-  css = "nav.main-menu.show { max-height: " + ($('.main-menu ul').height()+30) + "px !important; } "
-  css += "nav.main-menu.show > h1 { top: " + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px !important; } "
+  css = "body.nav-open nav.main-menu { max-height: " + ($('.main-menu ul').height()+30) + "px !important; } "
+  css += "body.nav-open nav.main-menu > h1 { top: " + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px !important; } "
   head = document.head or document.getElementsByTagName("head")[0]
   style = document.createElement("style")
   style.type = "text/css"
@@ -67,18 +104,30 @@ refreshViev = () ->
   else
     style.appendChild document.createTextNode(css)
   head.appendChild style
+  # smoothScrolling
+  $("a[href*=#]:not([href=#])").click ->
+    if location.pathname.replace(/^\//, "") is @pathname.replace(/^\//, "") and location.hostname is @hostname
+      target = $(@hash)
+      target = (if target.length then target else $("[name=" + @hash.slice(1) + "]"))
+      if target.length
+        $("html,body").animate
+          scrollTop: target.offset().top - 18
+        , 1000
+        false
 
 refreshViev()
 
 # 按鈕動作
 $('nav > h1').click ->
   return if $('nav > h1').hasClass('disabled')
-  if $('nav').hasClass('show')
-    $('nav').removeClass('show')
+  if $('body').hasClass('nav-open')
+    $('body').removeClass('nav-open')
     $('nav > h1').addClass('disabled')
   else
-    $('nav').addClass('show')
+    $('body').addClass('nav-open')
     $('nav > h1').addClass('disabled')
+    $('body.nav-open .main').click ->
+      $('body').removeClass('nav-open')
   setTimeout ->
     $('nav > h1').removeClass('disabled')
   , 1200
