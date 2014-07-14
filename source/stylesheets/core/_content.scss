@@ -22,7 +22,7 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
-p, blockquote, code, dl, ol, ul {
+p, blockquote, code, dl, ol, ul, html:lang(zh) article p, html:lang(zh) article li, html:lang(jp) article p, html:lang(jp) article li {
 	@include rhythm-to(0, 0, 0, 1, 17px);
 }
 

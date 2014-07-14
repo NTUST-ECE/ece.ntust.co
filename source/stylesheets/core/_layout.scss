@@ -51,11 +51,39 @@ body {
 .wrapper {
 	// background-color: $white;
 	@include at-breakpoint($tablet) { background-color: transparent; }
+
+	// ----- Only on Phone ----- //
+	@media (max-width: $tablet-min-width) {
+
+		header, main, footer {
+			opacity: 1;
+			@include transition-property(all);
+			@include transition-duration(.32s);
+			@include transition-delay(.52s);
+
+			body.nav-open & {
+				opacity: 0.5;
+				@include transition-delay(0);
+			}
+		}
+
+		main {
+			@include transform-origin(center, top);
+			@include filter(blur(0));
+			@include scale(1);
+
+			body.nav-open & {
+				@include filter(blur(2px));
+				@include transform(scale(.8) translateY(40px));
+				* { pointer-events: none; }
+			}
+		}
+	}
 }
 
 // -------------------------------------
 //   Composition
-//   -> header, footer, nav, content
+//   -> header, footer, nav, main
 // -------------------------------------
 
 .container {
@@ -88,7 +116,7 @@ body {
 			@include z-index(nav);
 		}
 
-		.content {
+		.main {
 			@include span-columns(8 omega);
 		}
 	}
@@ -106,7 +134,7 @@ body {
 			@include span-columns(2);
 		}
 
-		.content {
+		.main {
 			@include span-columns(9 omega);
 			@include suffix(1);
 			@include post(1);
@@ -142,11 +170,11 @@ body {
 @import "layouts/nav";
 
 // -------------------------------------
-//   Content
-//   -> 內文排版
+//   Main
+//   -> 主要內容排版
 // -------------------------------------
 
-@import "layouts/content";
+@import "layouts/main";
 
 // -------------------------------------
 //   Hero

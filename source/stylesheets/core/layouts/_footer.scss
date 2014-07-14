@@ -11,11 +11,17 @@ footer {
 	text-align: center;
 	padding-bottom: 10px;
 	position: relative;
+	@include z-index(footer);
 
 	* {
 		color: darken($white, 18%);
 		@include transition-property(color, text-shadow);
 		@include transition-delay(0s, 0s);
+	}
+
+	> * {
+		position: relative;
+		@include z-index(footer_content);
 	}
 
 	li:hover {

@@ -8,6 +8,7 @@ html:lang(zh) nav.main-menu,
 html:lang(jp) nav.main-menu {
 
 	@include user-select(none);
+	@include z-index(nav);
 
 	li {
 		list-style: none;
@@ -25,7 +26,7 @@ html:lang(jp) nav.main-menu {
 	// ----- Only on Phone ----- //
 	@media (max-width: $tablet-min-width) {
 		display: inline-block;
-		position: relative;
+		position: absolute;
 		margin-bottom: 16px;
 		background-color: $black;
 		overflow: hidden;
@@ -128,13 +129,13 @@ html:lang(jp) nav.main-menu {
 			@include transition-delay(.5s);
 		}
 
-		&.show {
-			@include transition-delay(.5s, 0);
+		body.nav-open & {
+			@include transition-delay(.5s + .02s, 0 + .02s);
 			max-width: 300px;
 			max-height: 640px;
 
 			h1 {
-				@include transition-delay(0);
+				@include transition-delay(0 + .02s);
 			}
 
 			ul {
@@ -161,11 +162,11 @@ html:lang(jp) nav.main-menu {
 					li:nth-child(#{$i}){
 
 						&::after {
-							@include transition-delay(($i*$i+$i)/100 + .8 + s, ($i*$i+$i)/100 + .8 + s);
+							@include transition-delay(($i*$i+$i)/100 + .8 + .022 + s, ($i*$i+$i)/100 + .8 + .022 + s);
 						}
 
 						a, a::before {
-							@include transition-delay(($i*$i+$i)/100 + .5 + s, ($i*$i+$i)/100 + .5 + s);
+							@include transition-delay(($i*$i+$i)/100 + .5 + .022 + s, ($i*$i+$i)/100 + .5 + .022 + s);
 						}
 					}
 				}
@@ -173,7 +174,7 @@ html:lang(jp) nav.main-menu {
 
 			.copyright {
 				opacity: .4;
-				@include transition-delay(1.2s);
+				@include transition-delay(1.2s + .02s);
 			}
 		}
 
@@ -312,7 +313,7 @@ html:lang(jp) nav.main-menu {
 
 	// ----- Only on Tablet ----- //
 	@media (max-width: $desktop-min-width) and (min-width: $tablet-min-width) {
-		@include z-index(nav);
+		@include z-index(navtwo);
 
 		li, li * {
 			@include text-shadow(0 0 12px rgba($black, 1));

@@ -1,9 +1,9 @@
 // -------------------------------------
-//   Content
-//   -> 內文排版
+//   Main
+//   -> 主要內容排版
 // -------------------------------------
 
-.content {
+.main {
 
 	h1 {
 		border-bottom: 1px solid rgba(0,0,0, .18);
@@ -24,7 +24,7 @@
 			content: " ";
 			position: absolute;
 			background-color: $content-bgc;
-			@include z-index(shadow);
+			@include z-index(main_background);
 			// @include background-image(linear-gradient(top, lighten($green, 50%) 0%, lighten($green, 50%) 4px, $green 4px, $green 10px, rgba($content-bgc, 0) 10px));
 
 			height: 100%;
