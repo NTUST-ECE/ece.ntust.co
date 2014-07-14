@@ -1,0 +1,123 @@
+// *************************************
+//
+//   Articles with TimeLine Layout
+//
+// *************************************
+
+.timeline-articles {
+	$bgc: $base-bgc;
+	$color: $base-bgc;
+	border-left: 2px dotted darken($color, 20%);
+	margin-left: $base-line-height*0.4;
+	padding-left: $base-line-height*0.6;
+
+	.label {
+		position: relative;
+		font-style: italic;
+		color: darken($color, 20%);
+
+		&::before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: -27px;
+			top: 6.5px;
+			width: 15px;
+			height: 15px;
+			border: 3px solid $bgc;
+			@include rotate(45deg);
+			background-color: darken($color, 20%);
+		}
+
+		@include respond-to($desktop-min-width) {
+			display: block;
+			width: 200px;
+			left: -200px - $base-line-height;
+			text-align: right;
+			padding-right: 4px;
+
+			&::before {
+				left: auto;
+				right: -18.5px;
+			}
+
+		}
+	}
+
+	.article {
+		position: relative;
+
+		a {
+
+			> .title, .content {
+				margin-left: 0;
+				margin-right: 0;
+				@include transition-property(margin-left, margin-right);
+				@include transition-duration(.3s);
+			}
+
+			.non-touch &:hover {
+
+				> .title, .content {
+					margin-left: 12px;
+					margin-right: -12px;
+				}
+
+				> .date::before {
+					left: -30.5px;
+					top: 3px;
+					width: 24px;
+					height: 24px;
+				}
+			}
+		}
+
+		.date, a .date {
+			display: block;
+			@include rhythm-to(0, 0, 0, 0, $base-line-height*0.7);
+			position: relative;
+			top: - $base-line-height*2.5;
+			color: darken($color, 72%);
+			font-family: "xingothic-tc-w6", $base-fontFamily;
+
+			&::before {
+				content: "";
+				display: block;
+				position: absolute;
+				left: -29px;
+				top: 4.5px;
+				width: 20px;
+				height: 20px;
+				@include border-radius(100px);
+				border: 4px double $bgc;
+				background-color: darken($color, 20%);
+				@include transition-property(top, left, width, height);
+				@include transition-duration(.3s);
+			}
+		}
+
+		.title, a .title {
+			display: block;
+			@include rhythm-to(0, 0, 0, 0.5, $base-line-height*1.28);
+			border-bottom: none;
+			position: relative;
+			top: $base-line-height;
+			color: $black;
+		}
+
+		.content, a .content {
+			color: $black;
+		}
+
+		&:last-child::after {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 4px;
+			height: 80px;
+			left: -20.5px;
+			bottom: -48px;
+			@include background-image(linear-gradient(top, rgba($bgc, 0) 0%, rgba($bgc, 1) 80%));
+		}
+	}
+}
