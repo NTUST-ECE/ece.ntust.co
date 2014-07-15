@@ -69,13 +69,58 @@ body {
 
 		main {
 			@include transform-origin(center, top);
-			@include filter(blur(0));
 			@include scale(1);
 
+			.a {
+				display: none;
+				font-family: "xingothic-tc-w8", $base-fontFamily;
+			}
+
+			&::before {
+				content: "NTUST ECE 台灣科大電資";
+				display: block;
+				font-family: "xingothic-tc-w8", $base-fontFamily;
+				font-size: 40px;
+				// color: darken($blue, 2%);
+				height: $mobile-logo-height;
+				line-height: $mobile-logo-height;
+				margin-left: $mobile-logo-height*1.28;
+				margin-bottom: 30px;
+
+
+				@media (max-width: 628px) { content: "NTUST ECE 台科大電資"; }
+				@media (max-width: 587px) { content: "NTUST ECE 台科電資"; }
+				@media (max-width: 546px) { content: "NTUST 台科電資"; }
+				@media (max-width: 465px) { content: "NTUST ECE"; }
+				@media (max-width: 384px) { content: "台科電資"; }
+				@media (max-width: 323px) { content: "ECE"; }
+
+			}
+
 			body.nav-open & {
-				@include filter(blur(2px));
 				@include transform(scale(.8) translateY(40px));
+				overflow: hidden;
+
+				&::after {
+					content: "";
+					display: block;
+					position: absolute;
+					@include z-index(main_content);
+					width: 8000px;
+					height: 8000px;
+					top: -4000px;
+					left: -4000px;
+				}
+
 				* { pointer-events: none; }
+			}
+
+			body.non-touch &, body.ios & {
+				@include filter(blur(0));
+			}
+
+			body.non-touch.nav-open &, body.ios.nav-open & {
+				@include filter(blur(1px));
 			}
 		}
 	}

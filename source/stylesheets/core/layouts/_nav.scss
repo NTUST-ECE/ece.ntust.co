@@ -28,31 +28,86 @@ html:lang(jp) nav.main-menu {
 		display: inline-block;
 		position: absolute;
 		margin-bottom: 16px;
-		background-color: $black;
+		// background-color: $black;
 		overflow: hidden;
+		// max-width: $mobile-logo-height;
+		// max-height: $mobile-logo-height;
+		@include transition-duration(0);
+		@include transition-delay(.8s);
 
-		@include transition-property(max-width, max-height);
-		@include transition-duration(.3s, .5s);
-		@include transition-delay(0, .3s);
-		max-width: $mobile-logo-height;
-		max-height: $mobile-logo-height;
+		a {
+			pointer-events: none;
+		}
+
+		.a {
+			display: block;
+			position: absolute;
+			@include z-index(shadow);
+			width: $mobile-logo-height;
+			height: 100%;
+			background-color: $black;
+			@include transform(scaleY(.1));
+			@include transform-origin(left, top);
+			@include transition-property(all);
+			@include transition-duration(.5s);
+			@include transition-delay(.3s);
+
+			body.nav-open & {
+				@include transform(scaleY(1));
+				@include transition-delay(0);
+			}
+		}
+
+		.b {
+			display: block;
+			position: absolute;
+			@include z-index(shadow);
+			width: 100%;
+			height: 100%;
+			background-color: $black;
+			@include transform(scaleX(.1));
+			opacity: 0;
+			@include transform-origin(left, top);
+			transition-property: transform;
+			-o-transition-property: -o-transform, opacity;
+			-ms-transition-property: -ms-transform, opacity;
+			-moz-transition-property: -moz-transform, opacity;
+			-webkit-transition-property: -webkit-transform, opacity;
+			@include transition-duration(.4s, 0);
+			@include transition-delay(0, .228s);
+
+			body.nav-open & {
+				@include transform(scaleX(1));
+				opacity: 1;
+				@include transition-delay(.4s, .5s);
+			}
+		}
 
 		> h1 {
 			@include replace-text('logo/ECE-invert.png');
-			@include transition-property(top);
+			transition-property: transform;
+			-o-transition-property: -o-transform;
+			-ms-transition-property: -ms-transform;
+			-moz-transition-property: -moz-transform;
+			-webkit-transition-property: -webkit-transform;
 			@include transition-duration(.5s);
 			@include transition-delay(.3s);
 			background-color: $black;
 			background-size: 72%;
 			display: block;
 			position: absolute;
+			@include z-index(nav_logo);
 			top: 0;
 			left: 0;
-			z-index: 12;
 			width: $mobile-logo-height;
 			height: $mobile-logo-height;
 			margin: 0;
 			cursor: pointer;
+			transform: translateY(0);
+			-o-transform: translateY(0);
+			-ms-transform: translateY(0);
+			-moz-transform: translateY(0);
+			-webkit-transform: translateY(0);
 		}
 
 		> h1.disabled {
@@ -62,6 +117,7 @@ html:lang(jp) nav.main-menu {
 		ul {
 			display: block;
 			position: relative;
+			@include z-index(nav_content);
 			overflow: visible;
 			margin: 12px 16px 12px $mobile-logo-height;
 			padding: 0 0 12px 0;
@@ -72,6 +128,7 @@ html:lang(jp) nav.main-menu {
 				// @include transition-delay(0);
 				// opacity: 0;
 				position: relative;
+				@include z-index(nav_content);
 				overflow: visible;
 				z-index: 10;
 
@@ -93,9 +150,10 @@ html:lang(jp) nav.main-menu {
 				a {
 					@include transition-property(opacity, transform);
 					@include transition-duration(.5s, .5s);
-					@include transition-delay(0, 0);
+					@include transition-delay(0, 1s);
 					@include translateX(20px);
 					position: relative;
+					@include z-index(nav_content);
 					overflow: hidden;
 					opacity: 0;
 					padding: 0 8px;
@@ -105,6 +163,7 @@ html:lang(jp) nav.main-menu {
 					content: " ← ";
 					display: inline-block;
 					position: absolute;
+					@include z-index(nav_content);
 					left: -24px;
 					@include opacity(.4);
 					@include transition-property(transform);
@@ -117,6 +176,7 @@ html:lang(jp) nav.main-menu {
 		.copyright {
 			display: block;
 			position: absolute;
+			@include z-index(nav_content);
 			right: 0;
 			bottom: 0;
 			font-size: 12px;
@@ -130,12 +190,16 @@ html:lang(jp) nav.main-menu {
 		}
 
 		body.nav-open & {
-			@include transition-delay(.5s + .02s, 0 + .02s);
 			max-width: 300px;
 			max-height: 640px;
+			@include transition-delay(0);
+
+			a {
+				pointer-events: all;
+			}
 
 			h1 {
-				@include transition-delay(0 + .02s);
+				@include transition-delay(0);
 			}
 
 			ul {
@@ -162,11 +226,11 @@ html:lang(jp) nav.main-menu {
 					li:nth-child(#{$i}){
 
 						&::after {
-							@include transition-delay(($i*$i+$i)/100 + .8 + .022 + s, ($i*$i+$i)/100 + .8 + .022 + s);
+							@include transition-delay(($i*$i+$i)/100 + .8 + s, ($i*$i+$i)/100 + .8 + s);
 						}
 
 						a, a::before {
-							@include transition-delay(($i*$i+$i)/100 + .5 + .022 + s, ($i*$i+$i)/100 + .5 + .022 + s);
+							@include transition-delay(($i*$i+$i)/100 + .5 + s, ($i*$i+$i)/100 + .5 + s);
 						}
 					}
 				}
@@ -174,21 +238,9 @@ html:lang(jp) nav.main-menu {
 
 			.copyright {
 				opacity: .4;
-				@include transition-delay(1.2s + .02s);
+				@include transition-delay(1.2s);
 			}
 		}
-
-		> .b {
-			display: none;
-			position: absolute;
-			width: $mobile-logo-height*0.8;
-			height: $mobile-logo-height*0.8;
-			border: 1px solid $black;
-			top: 0;
-			right: 0;
-			@include border-radius(100px);
-		}
-
 
 		a {
 			color: $white;

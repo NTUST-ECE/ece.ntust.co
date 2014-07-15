@@ -94,7 +94,7 @@ refreshViev = () ->
   jsCssNode = document.getElementById('js-css')
   jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
   css = "body.nav-open nav.main-menu { max-height: " + ($('.main-menu ul').height()+30) + "px !important; } "
-  css += "body.nav-open nav.main-menu > h1 { top: " + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px !important; } "
+  css += "body.nav-open nav.main-menu > h1 { transform: translateY(" + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px); -o-transform: translateY(" + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px); -ms-transform: translateY(" + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px); -moz-transform: translateY(" + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px); -webkit-transform: translateY(" + ($('.main-menu li.active').offset().top - ($('nav.main-menu > h1').height() - $('.main-menu li.active').height())/2) + "px); !important; } "
   head = document.head or document.getElementsByTagName("head")[0]
   style = document.createElement("style")
   style.type = "text/css"

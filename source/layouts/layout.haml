@@ -11,6 +11,9 @@
             = current_page.data.sub_title || data.config.siteSubTitle
             %a{:href => "/"}
     %nav.main-menu
+      .a
+      .b
+      .c
       %h1 Main Navigation
       %ul
         = partial "partials/nav"
@@ -19,6 +22,7 @@
         %span= Time.now.year
         ECE
     %main.main.content.vertical-rhythm
+      .a 國立台灣科技大學電資學士班 NTUST ECE
       -# %h1= current_page.data.title || data.config.siteTitle
       = yield
     %footer.footer
