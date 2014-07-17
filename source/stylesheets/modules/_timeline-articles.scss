@@ -10,6 +10,55 @@
 	border-left: 2px dotted darken($color, 20%);
 	margin-left: $base-line-height*0.4;
 	padding-left: $base-line-height*0.6;
+	position: relative;
+
+	.navigator {
+
+		@include respond-to($desktop-min-width) {
+			position: fixed;
+			@include z-index(trigger);
+			width: 120px;
+			left: -120px;
+			top: 30px;
+			height: 100vh;
+			overflow: auto;
+			@include transition-property(left);
+			@include transition-duration(.3s);
+			@include transition-timing-function(ease-in);
+			@include opacity(.5);
+
+			&.show {
+				left: 0;
+				@include transition-timing-function(ease-out);
+			}
+
+			li {
+				list-style: none;
+				display: block;
+				position: relative;
+
+				&::before {
+					content: "";
+					display: block;
+					position: absolute;
+					width: 4px;
+					height: 80%;
+					top: 10%;
+					left: -12px;
+					background-color: lighten($base-link-color, 4%);
+					@include transition-property(all);
+					@include transition-duration(.3s);
+					@include transform-origin(left, center);
+				}
+
+				&.active {
+					&::before {
+						@include scaleX(1.8);
+					}
+				}
+			}
+		}
+	}
 
 	.label {
 		position: relative;
@@ -121,16 +170,16 @@
 		.content, a .content {
 			color: $black;
 		}
+	}
 
-		&:last-child::after {
-			content: "";
-			display: block;
-			position: absolute;
-			width: 4px;
-			height: 80px;
-			left: -20.5px;
-			bottom: -48px;
-			@include background-image(linear-gradient(top, rgba($bgc, 0) 0%, rgba($bgc, 1) 80%));
-		}
+	&::after {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 4px;
+		height: 80px;
+		left: -3.5px;
+		bottom: -2px;
+		@include background-image(linear-gradient(top, rgba($bgc, 0) 0%, rgba($bgc, 1) 80%));
 	}
 }

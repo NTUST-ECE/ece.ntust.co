@@ -1,5 +1,8 @@
 console.log 'hi'
 
+# Responsive Breakpoints
+desktopMinWidth = 941
+
 this.waitForFinalEvent = (->
   timers = {}
   (callback, ms, uniqueId) ->
@@ -57,7 +60,9 @@ refreshViev = () ->
     pdt = 0
     d = new Date()
     pd = new Date()
+    n = 0
     $(this).children('.article').each ->
+      n++
       pdt = dt
       dt = $(this).children('.date').attr('datetime') or $(this).children('a').children('.date').attr('datetime')
       d.setTime(Date.parse(dt))
@@ -65,14 +70,16 @@ refreshViev = () ->
       if pdt != 0
         i = d.getFullYear()
         k = pd.getFullYear()
-        j = d.getMonth()
+        j = d.getMonth() + 1
         l = 12
         while i <= k
           l = pd.getMonth() if i == k
           while j <= l
+            # $(this).before i + " " + j + ' / ' + k + ' ' + l + '<br>'
             if j is 1 or j is 7
               $(this).before '<div id="timeline-' + tid + '-' + i + '-' + j + '" class="label">' + i + '/' + j + '</div>'
-              nav.append '<li><a href="#timeline-' + tid + '-' + i + '-' + j + '">' + i + '/' + j + '</a></li>'
+              nav.children('.link-to-' + n).remove()
+              nav.append '<li class="link-to-' + n + '"><a href="#timeline-' + tid + '-' + i + '-' + j + '">' + i + '/' + j + '</a></li>'
             j++
           j = 1
           i++
@@ -81,6 +88,23 @@ refreshViev = () ->
       $(this).addClass('not-raised')
     else
       $(this).removeClass('not-raised')
+  if $(window).width() > desktopMinWidth - 30
+    $(window).bind "scroll", ->
+      if $(window).width() > desktopMinWidth - 30
+        $('.timeline-articles.auto-label').each ->
+          navigator = $(this).children('.navigator')
+          pt = $(this).offset().top
+          pd = $(this).offset().top + $(this).height()
+          if $(document).scrollTop() > navBottomPosition + 520 and $(document).scrollTop() > pt and $(document).scrollTop() < pd
+            navigator.addClass 'show'
+            navigator.children('ul').children('li').removeClass 'active'
+            navigator.children('ul').children('li').each ->
+              if $(document).scrollTop() > $($(this).children('a').attr('href')).offset()?.top - 120
+                navigator.children('ul').children('li').removeClass 'active'
+                $(this).addClass 'active'
+          else
+            navigator.removeClass 'show'
+
   # 重新調整基線旋律
   refreshBaseline()
   # 為包著圖片的元素加上 class
