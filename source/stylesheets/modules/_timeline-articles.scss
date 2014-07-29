@@ -25,7 +25,7 @@
 			@include transition-property(left);
 			@include transition-duration(.3s);
 			@include transition-timing-function(ease-in);
-			@include opacity(.5);
+			// @include opacity(.5);
 
 			&.show {
 				left: 0;
@@ -37,23 +37,34 @@
 				display: block;
 				position: relative;
 
+				a {
+					@include transition-property(none);
+					color: darken($color, 24%);
+				}
+
 				&::before {
 					content: "";
 					display: block;
 					position: absolute;
-					width: 4px;
-					height: 80%;
+					width: 1px;
+					height: 90%;
 					top: 10%;
 					left: -12px;
-					background-color: lighten($base-link-color, 4%);
+					background-color: darken($color, 24%);
 					@include transition-property(all);
 					@include transition-duration(.3s);
 					@include transform-origin(left, center);
 				}
 
 				&.active {
+
+					a {
+						color: $base-link-color;
+					}
+
 					&::before {
-						@include scaleX(1.8);
+						@include scaleX(3.8);
+						background-color: darken($base-link-color, 24%);
 					}
 				}
 			}

@@ -97,11 +97,24 @@ refreshViev = () ->
           pd = $(this).offset().top + $(this).height()
           if $(document).scrollTop() > navBottomPosition + 520 and $(document).scrollTop() > pt and $(document).scrollTop() < pd
             navigator.addClass 'show'
-            navigator.children('ul').children('li').removeClass 'active'
-            navigator.children('ul').children('li').each ->
-              if $(document).scrollTop() > $($(this).children('a').attr('href')).offset()?.top - 120
-                navigator.children('ul').children('li').removeClass 'active'
-                $(this).addClass 'active'
+            if navigator.children('ul').children('li.active')[0]
+              activeLi = navigator.children('ul').children('li.active')
+              activeIndex = activeLi.index()
+              if $(document).scrollTop() > $(activeLi.children('a').attr('href')).offset()?.top - 120
+                nextLi = navigator.children('ul').children('li:nth-of-type(' + (activeIndex + 2) + ')')
+                if $(document).scrollTop() > $(nextLi.children('a').attr('href')).offset()?.top - 120
+                  activeLi.removeClass('active')
+                  nextLi.addClass('active')
+              else
+                prevLi = navigator.children('ul').children('li:nth-of-type(' + (activeIndex) + ')')
+                console.log prevLi
+                activeLi.removeClass('active')
+                prevLi.addClass('active')
+            else
+              navigator.children('ul').children('li').each ->
+                if $(document).scrollTop() > $($(this).children('a').attr('href')).offset()?.top - 120
+                  navigator.children('ul').children('li').removeClass 'active'
+                  $(this).addClass 'active'
           else
             navigator.removeClass 'show'
 
