@@ -412,6 +412,7 @@ html:lang(jp) nav.main-menu {
 	@include respond-to($desktop-min-width) {
 
 		margin-left: -0.2em;
+		margin-top: 35px;
 		@include background-image(linear-gradient(right, rgba(0,0,0, .1) 0%, rgba($base-bgc, 0) 23px));
 		background-repeat: no-repeat;
 		border-right: 1px solid rgba(0,0,0, .23);
@@ -419,6 +420,7 @@ html:lang(jp) nav.main-menu {
 		ul {
 			position: relative;
 			margin-right: -1px;
+			padding-top: 30px;
 			padding-bottom: 72px;
 			@include background-image(linear-gradient(top, $base-bgc 0%, rgba($base-bgc, 0) 32px), linear-gradient(bottom, $base-bgc 0%, rgba($base-bgc, 0) 70px));
 			background-repeat: no-repeat;

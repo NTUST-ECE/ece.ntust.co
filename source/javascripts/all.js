@@ -5,6 +5,8 @@
 //= require foundation/js/foundation.js
 //= require baseline.js
 //= require jquery.lazyload/jquery.lazyload
+//= require fancybox/source/jquery.fancybox.pack
+// An licence is required to use fancyBox for commercial websites
 //= include app.js
 
 // foundation
@@ -14,32 +16,21 @@ $(document).foundation();
 // FastClick
 
 window.addEventListener('load', function() {
-    FastClick.attach(document.body);
+  FastClick.attach(document.body);
 }, false);
 
 // macho.js
 
 $('.content p').macho();
 
-// justfont
+// fancyBox
 
-// var jfTextElements = 'h1, h2, h3, h4, h5, h6, p, blockquote, a, code, dl, ol, ul';
-
-
-// $(jfTextElements).css('opacity', '0');
-
-
-// function resetHPOpacity() {
-//   $(jfTextElements).each(function () {
-//     $(this).css('opacity', '');
-//   });
-// }
-
-// _jf.push(['_eventActived',function () {
-//   resetHPOpacity();
-// }]);
-
-// _jf.push(['_eventInactived',function () {
-//   console.warn("justfont failed");
-//   resetHPOpacity();
-// }]);
+$("a.lightbox").fancybox({
+  // openEffect  : 'elastic',
+  // closeEffect : 'elastic',
+  helpers : {
+    title : {
+      type : 'outside'
+    }
+  }
+});

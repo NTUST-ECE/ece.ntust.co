@@ -1,0 +1,27 @@
+// *************************************
+//
+//   Image Container
+//
+// *************************************
+
+.img {
+
+}
+
+a.img, a .img {
+	overflow: hidden;
+
+	img {
+		@include scale(1);
+		@include transition-property(all);
+		@include transition-duration(.8s);
+	}
+}
+
+a.img:hover, a:hover > .img {
+
+	img {
+		@include scale(1.1);
+		@include transition-duration(1.8s);
+	}
+}

@@ -81,8 +81,8 @@ $ irb
 
 ### Layout Debug
 
-- 在 style.scss 設 $debug: true; 可以啟動網格系統和垂直節奏的除錯輔助。
-- (/source/stylesheets/core/debuggers/_grid_debug.scss)。
+- 在 style.scss 設 $debug: true; 可以啟動網格系統和垂直節奏的輔助格線。
+
 
 [1]: http://middlemanapp.com
 [2]: http://haml.info

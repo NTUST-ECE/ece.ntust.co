@@ -33,7 +33,7 @@ $debug: true;
 // @import "foundation";
 @import "foundation/functions";
 @import "foundation/components/global";
-@import "foundation/components/type";
+// @import "foundation/components/type";
 @import "susy";
 
 // -------------------------------------
@@ -65,8 +65,10 @@ $debug: true;
 // -------------------------------------
 
 @import "modules/*";
+@import "modules/img";
 @import "modules/breadcrumb";
 @import "modules/timeline-articles";
+@import "modules/fancybox";
 
 // -------------------------------------
 //   Pages

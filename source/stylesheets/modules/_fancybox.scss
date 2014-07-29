@@ -1,0 +1,46 @@
+// *************************************
+//
+//   fancyBox
+//   -> http://fancyapps.com/fancybox/
+//
+// *************************************
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+	@include background-image(image-url("fancybox/fancybox_sprite.png"));
+}
+
+.fancybox-overlay {
+	@include background-image(image-url("fancybox/fancybox_overlay.png"));
+}
+
+
+#fancybox-loading div {
+	background: image-url('fancybox_loading.gif') center center no-repeat;
+}
+
+.fancybox-nav {
+	background: transparent image-url('blank.gif'); /* helps IE */
+
+}
+
+/*Retina graphics!*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	   only screen and (min--moz-device-pixel-ratio: 1.5),
+	   only screen and (min-device-pixel-ratio: 1.5){
+
+	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+		@include background-image(image-url("fancybox/fancybox_sprite@2x.png"));
+	}
+
+	#fancybox-loading div {
+		@include background-image(image-url("fancybox/fancybox_loading@2x.gif"));
+	}
+}
+
+.fancybox-overlay {
+	@include transition-duration(0);
+}
+
+.fancybox-skin {
+	padding: 0 !important;
+}
