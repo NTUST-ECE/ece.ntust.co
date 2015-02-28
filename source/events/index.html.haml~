@@ -1,0 +1,20 @@
+---
+pageable: true
+---
+.timeline-articles.auto-label
+<% page_articles.each do |article| %>
+  article.article
+    a(href="<%= article.url %>")
+    h1.title	<%= article.title %>
+			time.date(datetime="<%= article.date.strftime('%Y-%m-%d') %>") <%= article.date.strftime('%Y-%m-%d') %>
+			.content
+			<%= article.summary %> 
+<% end %>
+.timeline-articles
+<% page_articles.each do |article| %>
+	article.article
+			h1.title	<%= article.title%>
+			time.date	<%= article.date.strftime('%Y-%m-%d') %>
+			.content
+			<%= article.summary %> 
+<% end %>

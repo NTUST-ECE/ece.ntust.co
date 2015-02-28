@@ -1,0 +1,18 @@
+---
+pageable: true
+---
+
+<div class="timeline-articles auto-label">
+<% page_articles.each do |article| %>
+  <article class="article">
+    <a href="<%= article.url %>">
+      <h1 class="title"><%= article.title %></h1>
+    </a>
+      <time class="date" datetime="<%= article.date.strftime('%Y-%m-%d') %>"><%= article.date.strftime('%Y/%m/%d') %></time>
+			<div class="content">
+			  <% require 'sanitize' %>
+    	  <p><%= Sanitize.fragment(article.summary, Sanitize::Config::BASIC) %></p>
+      </div>
+  </article>
+<% end %>
+</div>
