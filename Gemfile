@@ -21,3 +21,5 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 
 gem "nokogiri"
 gem "sanitize"
+
+gem 'middleman-deploy', '~>1.0'

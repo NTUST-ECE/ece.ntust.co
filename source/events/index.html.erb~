@@ -12,6 +12,7 @@ pageable: true
 			<div class="content">
 			  <% require 'sanitize' %>
     	  <p><%= Sanitize.fragment(article.summary, Sanitize::Config::BASIC) %></p>
+	  <a href="<%= article.url %>" style="float:right;">Read more...</a>
       </div>
   </article>
 <% end %>

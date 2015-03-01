@@ -1,5 +1,5 @@
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -7,7 +7,7 @@
 	</div>  
 </div>
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -15,15 +15,15 @@
 	</div>  
 </div> 
 <div class="fake-saview">
-		<img src="../images/logo/ECE.png" style="height:180px;"/>
+		<img src="./images/logo/ECE.png" style="height:180px;"/>
 		<h2>這裡可以寫字</h2>
 </div>
 <div class="fake-saview">
-		<img src="../images/logo/ECE.png" style="height:180px;"/>
+		<img src="./images/logo/ECE.png" style="height:180px;"/>
 		<h2>這裡可以寫字</h2>
 </div>
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -31,7 +31,7 @@
 	</div>  
 </div> 
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -39,7 +39,7 @@
 	</div>  
 </div> 
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -47,7 +47,7 @@
 	</div>  
 </div> 
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -55,7 +55,7 @@
 	</div>  
 </div> 
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -63,7 +63,7 @@
 	</div>  
 </div> 
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -71,15 +71,15 @@
 	</div>  
 </div> 
 <div class="fake-saview">
-		<img src="../images/logo/ECE.png" style="height:180px;"/>
+		<img src="./images/logo/ECE.png" style="height:180px;"/>
 		<h2>這裡可以寫字</h2>
 </div>
 <div class="fake-saview">
-		<img src="../images/logo/ECE.png" style="height:180px;"/>
+		<img src="./images/logo/ECE.png" style="height:180px;"/>
 		<h2>這裡可以寫字</h2>
 </div>
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -87,7 +87,7 @@
 	</div>  
 </div>
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>
@@ -95,7 +95,7 @@
 	</div>  
 </div>
 <div class="saview samember">
-	<img src="../images/3.jpg" />
+	<img src="./images/3.jpg" />
 	<div class="samask">
 		<p>獸醫乃</p>
 		<p style="font-size: 1em;">職稱抬頭</p>

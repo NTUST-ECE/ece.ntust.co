@@ -67,7 +67,7 @@ activate :blog do |blog|
   blog.prefix = "articles"
   blog.permalink = "{year}/{title}.html"
   blog.taglink = "tag/{tag}.html"
-  blog.sources = "{category}/{year}-{month}-{day}-{title}.html"
+  #blog.sources = "{category}/{year}-{month}-{day}-{title}.html"
   blog.paginate = true
   blog.page_link = "p{num}"
   blog.per_page = 5
@@ -116,14 +116,22 @@ configure :build do
   # Minify Javascript on build
   activate :minify_javascript
 
-  activate :imageoptim
+  # activate :imageoptim
 
   # Enable cache buster
   # activate :asset_hash
 
   # Use relative URLs
-  # activate :relative_assets
+  activate :relative_assets
+  
+  relative_assets = true
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+end
+
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.branch = 'master'
+  deploy.remote = 'https://github.com/NTUST-ECE/ntust-ece.github.io.git'
 end
