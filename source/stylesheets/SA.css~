@@ -18,8 +18,12 @@
    border: 2px solid #fff;
    overflow: hidden;
    position: relative;
-   text-align: left;
+   text-align: center;
    cursor: default;
+}
+.fake-saview  img{
+	 width:120%;
+	 height:auto;
 }
 .saview .samask, .saview .content {
    width: 240px;
@@ -44,7 +48,8 @@
 .samember .samask {
    opacity: 0;
    overflow:visible;
-   border:150px solid rgba(0,0,0,0);
+   border:150px solid rgba(128,0,128,0);
+   text-align:left;
    -moz-box-sizing:border-box;
    -webkit-box-sizing:border-box;
    box-sizing:border-box;
@@ -66,7 +71,7 @@
 }
 .samember:hover .samask {
    opacity: 1;
-   border:150px solid rgba(0,0,0,0.7);
+   border:150px solid rgba(128,0,128,0.85);
 }
 .samember:hover a.info {
 	opacity:1;
