@@ -9,10 +9,9 @@ pageable: true
       <h1 class="title"><%= article.title %></h1>
     </a>
       <time class="date" datetime="<%= article.date.strftime('%Y-%m-%d') %>"><%= article.date.strftime('%Y/%m/%d') %></time>
-			<div class="content">
-			  <% require 'sanitize' %>
-    	  <p><%= Sanitize.fragment(article.summary, Sanitize::Config::BASIC) %></p>
-	  <a href="<%= article.url %>" style="float:right;">Read more...</a>
+	<div class="content" style="margin-top:-30px;">
+    	  <p style="text-align:left;"><%= article.summary %></p>
+	  <div style="text-align:right;"><a href="<%= article.url %>">Read more...</a></div>
       </div>
   </article>
 <% end %>

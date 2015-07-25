@@ -1,9 +1,15 @@
 .welcome
-  <h1 style="color:#9600c8;"> 國立臺灣科技大學電資學士班</h1>
+  <h1 style="color:#118032; font-weight:lighter;"> 臺科電資</h1>
   /!p class="doc"
   /!  = link_to "Read Online Documentation", "http://middlemanapp.com/"
   .content
 	javascript:
+		function openDialog() {
+				Avgrund.show( "#default-popup" );
+		}
+		function closeDialog() {
+				Avgrund.hide();
+		}	
 		window.onload=function(){
 			setTimeout(function() {
 				$('.WeekTopicText').fadeIn('slow');
@@ -14,25 +20,32 @@
 			$(".WeekTopic").on('mouseout', function() {
 			  document.getElementById('WeekTopicText').style.opacity = 0
 			});
+			Mousetrap.bind('up up down down left right left right b a', function() { openDialog(); });
 		}
-	<div class="WeekTopic" style="width:100%; max-height:56.25%; background-image:url(https://scontent-sjc.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/11021226_338874082988520_2893829520401181470_n.jpg?oh=6255e66a04c49947334663fc79639ada&oe=558C35D7); background-color:black; background-repeat:no-repeat; background-position:center;">
+	<div class="WeekTopic" style="width:100%; max-height:56.25%; background-image:url(https://googledrive.com/host/0B_2OXPjedsZNRVZrVWpWSjZJQWc); background-color:black; background-repeat:no-repeat; background-position:center;">
 		<div id="WeekTopicText" style="width:100%; max-height:30%; padding-left:5%; background-color:rgba(0,0,0,0.75); opacity:0; position:absolute; bottom:0; color:#EEEEEE; border-top-style:solid; border-top-width:3px; border-top-color:#CC3333;">
 			<h4 style="color:#FFFFFF"> 系網上線 </h4>
 			p  電資學士班全新系網正式上線， Sieg ECE Sieg ECE
 		</div>
-		<img src="http://i31.photobucket.com/albums/c371/waynekaobs/25562_10150152387740088_617835087_1.jpg" style="visibility:hidden;"/>
+		<img src="https://googledrive.com/host/0B_2OXPjedsZNRVZrVWpWSjZJQWc" style="visibility:hidden;"/>
 	</div>
 	<div style="width:100%; overflow:hidden;">
 	<div id="ArticleBox1" style="width:49%; border-style:solid; border-width:1px; border-top-width:3px; border-color:#CDCEA6; border-top-color:#FFCC00; margin-buttom:15px; padding-left:5px; padding-right:5px; padding-right:5px; padding-top: 3px; float:left;  padding-bottom: 500em; margin-bottom: -500em;">
-		h2 Article Box 1
-		<p>  The metal–oxide–semiconductor field-effect transistor (MOSFET, MOS-FET, or MOS FET) is a type of transistor used for amplifying or switching electronic signals.Although the MOSFET is a four-terminal device with source (S), gate (G), drain (D), and body (B) terminals,[1] the body (or substrate) of the MOSFET is often connected to the source terminal, making it a three-terminal device like other field-effect transistors.</p>
+		h2  第十屆會長選舉
+		<p>第十屆系學會會長選舉投票結果<br>有效票:84票<br>廢票:4票<br>同意票:80票<br>反對票:4票<br><br>恭喜 宮宇辰 吳明壎 當選第十屆 正副會長！!!</p>
 	</div>
 	<div id="ArticleBox2" style="width:49%; border-style:solid; border-width:1px; border-top-width:3px; border-color:#CDCEA6; border-top-color:#99CC33; margin-left:2%; margin-buttom:15px; padding-left:5px; padding-right:5px; padding-top:3 px; float:left;  padding-bottom: 500em; margin-bottom: -500em;">
-		h2 Article Box 2
-		<p> A bipolar junction transistor (BJT or bipolar transistor) is a type of transistor that relies on the contact of two types of semiconductor for its operation. BJTs can be used as amplifiers, switches, or in oscillators. BJTs can be found either as individual discrete components, or in large numbers as parts of integrated circuits.Bipolar transistors are so named because their operation involves both electrons and holes. </p>
+		h2  電資送舊餐宴
+		<p>電資送舊餐宴<br>電資同學們趕快來共襄盛舉呵呵!<br>學長姐們送舊要來唷~~~~<br>大一到大三"有繳系費者"<br>只需要繳交99元!!!<br><br>餐廳：六福客棧(台北市長春路168號)<br>時間：5/13星期三 18：00開始</p>
 	</div>
 	</div>
 	<div style="width:100%; height:5px; float:left; margin-top:40px; margin-buttom:10px; display:inline-box;">
 	</div>
+	<aside id="default-popup" class="avgrund-popup">
+			<h2>文藝電資</h2>
+			<p id="p1">
+			</p>
+			<span style="cursor:pointer;"onclick="javascript:closeDialog()">[Close]</span>
+	</aside>
 .fb-likebutton= partial "partials/fb-likeButton"
 

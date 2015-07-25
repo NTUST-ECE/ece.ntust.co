@@ -3,6 +3,7 @@
  *= require animate.css/animate
  *= require Han/han.css
  *= require fancybox/source/jquery.fancybox.css
+ *= require SA.css
  * An licence is required to use fancyBox for commercial websites
  *= require style
  */

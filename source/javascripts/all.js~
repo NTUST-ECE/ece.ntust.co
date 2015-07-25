@@ -7,7 +7,6 @@
 //= require jquery.lazyload/jquery.lazyload
 //= require fancybox/source/jquery.fancybox.pack
 //= require mousetrap.min.js
-//= require avgrund.js
 // An licence is required to use fancyBox for commercial websites
 //= include app.js
 

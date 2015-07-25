@@ -132,4 +132,6 @@ end
 
 activate :deploy do |deploy|
   deploy.method = :git
+  deploy.branch = 'master'
+  deploy.remote = 'https://github.com/NTUST-ECE/ntust-ece.github.io.git'
 end

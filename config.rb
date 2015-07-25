@@ -59,6 +59,7 @@ activate :blog do |blog|
   blog.permalink = "{year}/{title}.html"
   blog.taglink = "tag/{tag}.html"
   blog.paginate = true
+  Time.zone = "Taipei"
   #blog.layout = 'event_layout'
 end
 
@@ -71,6 +72,7 @@ activate :blog do |blog|
   blog.paginate = true
   blog.page_link = "p{num}"
   blog.per_page = 5
+  Time.zone = "Taipei"
   #blog.layout = 'article_layout'
 end
 

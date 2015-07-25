@@ -37,7 +37,7 @@ $ irb
  => "nin-hao-huan-ying-guang-lin-NTUST-ECE"
 ```
 
-還要注意：檔名使用中原標準時間(即台北時間)，但frontmatter裡請使用UTC時區(中原標準時間-8hr)。
+還要注意：若使用UTC時間，以UTC時間為準的未來時間文章將無法被build出來。
 
 ## Style Guides
 
